@@ -1,0 +1,19 @@
+=============================================================================
+${projectName} Release Notes
+=============================================================================
+
+Release 0.0.0.1 - 1st January 2008
+==================================
+
+The following new features were introduced:
+
+	* Application name is returned on demand
+
+The following minor changes were made:
+
+	* Full test harness introduced
+	
+The following bug fixes were made:
+
+	* None
+	

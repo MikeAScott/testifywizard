@@ -1,0 +1,10 @@
+!1 Test Application Info
+Simple test to check that FitNesse is wired up to the System Under Test
+
+!|Import|
+|${FIXTURE_PACKAGE}|
+
+!|Check Application|
+|name?|
+|${projectName}|
+ 

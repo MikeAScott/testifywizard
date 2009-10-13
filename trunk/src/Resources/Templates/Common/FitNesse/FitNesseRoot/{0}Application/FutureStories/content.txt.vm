@@ -1,0 +1,8 @@
+!1 Future Stories : 
+!2 Items on the ProductBacklog that have not been started
+This is where ideas for potential new functionality are held. 
+
+When stories from this backlog are selected for an iteration, create an iteration plan page and "include" it here. 
+
+!see StoryTests.StoryOne
+!see StoryTests.StoryTwo

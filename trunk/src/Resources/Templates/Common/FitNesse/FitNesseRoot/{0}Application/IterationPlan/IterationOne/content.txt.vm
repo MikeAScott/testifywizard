@@ -1,0 +1,18 @@
+!1 Iteration 1
+!2 Iteration Theme
+Add information about the theme for the iteration.
+
+!2 These are the stories for this iteration
+
+!see .${projectName}Application.StoryTests.TestApplicationInfo
+Ensure that the application information provider is correct 
+
+!see .${projectName}Application.StoryTests.TestSystemClock
+System clock control
+
+!see .${projectName}Application.StoryTests.StoryOne
+Story one description
+
+!see .${projectName}Application.StoryTests.StoryTwo
+Description of Story two
+

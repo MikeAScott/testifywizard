@@ -1,0 +1,25 @@
+<!DOCTYPE cruisecontrol [ 
+	<!ENTITY CCBuildDefinitions SYSTEM "file:C:\Dev\Build\CCBuildDefinitions.config">
+]>
+<cruisecontrol xmlns:cb="urn:ccnet.config.builder">
+	<!-- ************ Common Build Definitions ************** -->
+	<!-- Include only once -->
+	&CCBuildDefinitions;
+
+	<cb:define localServer="localhost" />
+	<cb:define rootBuildDir="C:\Dev\build" />
+	<cb:define ccnetWebRoot="http://$(localServer)/ccnet" />
+
+	<cb:define svnExecutable="C:\Program Files\CollabNet Subversion\svn.exe" />
+	<cb:define svnDefaultRepository="https://$(localServer):8443/svn/Demo" />
+	
+	<cb:define p4DefaultServer="$(localServer):1666" />
+	<cb:define p4Depot="depot" />
+	<cb:define p4User="" />
+	<cb:define p4Password="" />
+
+	<!-- ************ Project Build Includes ************** -->
+	<!-- include one per project -->
+	<cb:include href="file:C:\Dev\build\\${projectName}.ccnet.config" />
+	
+</cruisecontrol>

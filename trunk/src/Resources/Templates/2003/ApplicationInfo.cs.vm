@@ -1,0 +1,12 @@
+using System;
+
+namespace ${projectName}.Core
+{
+    /// <summary>
+    /// Contains information about the application.
+    /// Set up as a skeleton class to check that the UnitTest and FitFixtures references are wired up properly
+    /// </summary>
+    public class ApplicationInfo{
+		public const string ApplicationName = "${projectName}";
+    }
+}

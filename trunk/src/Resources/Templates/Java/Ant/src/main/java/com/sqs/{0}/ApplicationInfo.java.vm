@@ -1,0 +1,9 @@
+package com.sqs.${projectName};
+
+public class ApplicationInfo {
+
+	public static String getApplicationName() {
+		return "${projectName}";
+	}
+
+}

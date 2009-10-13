@@ -1,0 +1,23 @@
+using NUnit.Framework;
+using ${projectName}.Core;
+using SQS.UnitTest.Framework;
+
+namespace ${projectName}.Core.UnitTests
+{
+	[TestFixture]
+	public class ApplicationInfoTests
+	{
+		[Test]
+		public void TestApplicationName()
+		{
+			Assert.AreEqual("${projectName}", ApplicationInfo.ApplicationName);
+		}
+		
+		[Test]
+		public void HasPrivateParameterlessContructor() {
+			TypeAssert.HasPrivateParameterlessConstructor(typeof(ApplicationInfo));
+		}
+
+	}
+}
+

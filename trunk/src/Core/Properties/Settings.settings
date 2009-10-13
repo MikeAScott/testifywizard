@@ -1,0 +1,51 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="ThoughtWorks.TreeSurgeon.Core.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="TemplateTree" Type="System.Collections.Specialized.StringCollection" Scope="Application">
+      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;string&gt;go.bat					,go.bat&lt;/string&gt;
+  &lt;string&gt;Sapling.build			,{0}.build&lt;/string&gt;
+  &lt;string&gt;Sapling.sln				,src\{0}.sln&lt;/string&gt;
+  &lt;string&gt;RunAcceptanceTests.bat	,RunAcceptanceTests.bat&lt;/string&gt;
+  &lt;string&gt;SaplingConsole.csproj	,src\{0}Console\{0}Console.csproj&lt;/string&gt;
+  &lt;string&gt;AssemblyInfo.cs			,src\{0}Console\AssemblyInfo.cs&lt;/string&gt;
+  &lt;string&gt;HelloWorld.cs			,src\{0}Console\HelloWorld.cs&lt;/string&gt;
+  &lt;string&gt;Core.csproj				,src\Core\Core.csproj&lt;/string&gt;
+  &lt;string&gt;AssemblyInfo.cs			,src\Core\AssemblyInfo.cs&lt;/string&gt;
+  &lt;string&gt;ApplicationInfo.cs		,src\Core\ApplicationInfo.cs&lt;/string&gt;
+  &lt;string&gt;UnitTests.csproj		,src\UnitTests\UnitTests.csproj&lt;/string&gt;
+  &lt;string&gt;AssemblyInfo.cs			,src\UnitTests\AssemblyInfo.cs&lt;/string&gt;
+  &lt;string&gt;TestApplicationInfo.cs	,src\UnitTests\TestApplicationInfo.cs&lt;/string&gt;
+  &lt;string&gt;FitFixtures.csproj		,src\FitFixtures\FitFixtures.csproj&lt;/string&gt;
+  &lt;string&gt;AssemblyInfo.cs			,src\FitFixtures\AssemblyInfo.cs&lt;/string&gt;
+  &lt;string&gt;TestFixture.cs			,src\FitFixtures\TestFixture.cs&lt;/string&gt;
+  &lt;string&gt;FrontPage_content.txt			,FitNesse\FitNesseRoot\FrontPage\content.txt&lt;/string&gt;
+  &lt;string&gt;SaplingApplication_content.txt	,FitNesse\FitNesseRoot\{0}Application\content.txt&lt;/string&gt;
+  &lt;string&gt;Suite_properties.xml			,FitNesse\FitNesseRoot\{0}Application\properties.xml&lt;/string&gt;
+  &lt;string&gt;SaplingSetUp_content.txt		,FitNesse\FitNesseRoot\{0}Application\SetUp\content.txt&lt;/string&gt;
+  &lt;string&gt;CompletedStories_content.txt	,FitNesse\FitNesseRoot\{0}Application\CompletedStories\content.txt&lt;/string&gt;
+  &lt;string&gt;Suite_properties.xml			,FitNesse\FitNesseRoot\{0}Application\CompletedStories\properties.xml&lt;/string&gt;
+  &lt;string&gt;CurrentStories_content.txt		,FitNesse\FitNesseRoot\{0}Application\CurrentStories\content.txt&lt;/string&gt;
+  &lt;string&gt;Suite_properties.xml			,FitNesse\FitNesseRoot\{0}Application\CurrentStories\properties.xml&lt;/string&gt;
+  &lt;string&gt;FutureStories_content.txt		,FitNesse\FitNesseRoot\{0}Application\FutureStories\content.txt&lt;/string&gt;
+  &lt;string&gt;Suite_properties.xml			,FitNesse\FitNesseRoot\{0}Application\FutureStories\properties.xml&lt;/string&gt;
+  &lt;string&gt;IterationOne_content.txt		,FitNesse\FitNesseRoot\{0}Application\IterationOne\content.txt&lt;/string&gt;
+  &lt;string&gt;Suite_properties.xml			,FitNesse\FitNesseRoot\{0}Application\IterationOne\properties.xml&lt;/string&gt;
+  &lt;string&gt;CurrentIteration_content.txt	,FitNesse\FitNesseRoot\{0}Application\CurrentIteration\content.txt&lt;/string&gt;
+  &lt;string&gt;TestApplicationInfo_content.txt	,FitNesse\FitNesseRoot\{0}Application\CompletedStories\TestApplicationInfo\content.txt&lt;/string&gt;
+&lt;/ArrayOfString&gt;</Value>
+    </Setting>
+    <Setting Name="VelocityContext" Type="System.Collections.Specialized.StringCollection" Scope="Application">
+      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;string&gt;coreGuid		,{GUID}&lt;/string&gt;
+  &lt;string&gt;unitTestGuid	,{GUID}&lt;/string&gt;
+  &lt;string&gt;consoleGuid	,{GUID}&lt;/string&gt;
+  &lt;string&gt;fitFixturesGuid	,{GUID}&lt;/string&gt;
+  &lt;string&gt;nantDeleteClause, ${directory::exists(build.dir)}&lt;/string&gt;
+&lt;/ArrayOfString&gt;</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

@@ -1,0 +1,59 @@
+﻿Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "${projectName}.Core", "${projectName}.Core\\${projectName}.Core.csproj", "{$coreGuid}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "${projectName}.GUI", "${projectName}.GUI\\${projectName}.GUI.csproj", "{$guiGuid}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "${projectName}.Core.UnitTests", "${projectName}.Core.UnitTests\\${projectName}.Core.UnitTests.csproj", "{$unitTestGuid}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SQS.UnitTest.Framework", "SQS.UnitTest.Framework\SQS.UnitTest.Framework.csproj", "{$unitTestFrameworkGuid}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "${projectName}.FitFixtures", "${projectName}.FitFixtures\\${projectName}.FitFixtures.csproj", "{$fitFixturesGuid}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "buildHelpers", "buildHelpers", "{$buildHelpersGuid}"
+	ProjectSection(SolutionItems) = preProject
+		..\go.bat = ..\go.bat
+		..\RunAcceptanceTests.bat = ..\RunAcceptanceTests.bat
+		..\StartFitNesse.bat = ..\StartFitNesse.bat
+		..\StartFitNesseServer.bat = ..\StartFitNesseServer.bat
+		..\StartNUnitGUI.bat = ..\StartNUnitGUI.bat
+		..\\${projectName}.build = ..\\${projectName}.build
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{$solutionItemsGuid}"
+	ProjectSection(SolutionItems) = preProject
+		SolutionInfo.cs = SolutionInfo.cs
+		VersionInfo.cs = VersionInfo.cs
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{$coreGuid}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{$coreGuid}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{$coreGuid}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{$coreGuid}.Release|Any CPU.Build.0 = Release|Any CPU
+		{$guiGuid}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{$guiGuid}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{$guiGuid}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{$guiGuid}.Release|Any CPU.Build.0 = Release|Any CPU
+		{$unitTestGuid}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{$unitTestGuid}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{$unitTestGuid}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{$unitTestGuid}.Release|Any CPU.Build.0 = Release|Any CPU
+		{$unitTestFrameworkGuid}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{$unitTestFrameworkGuid}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{$unitTestFrameworkGuid}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{$unitTestFrameworkGuid}.Release|Any CPU.Build.0 = Release|Any CPU
+		{$fitFixturesGuid}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{$fitFixturesGuid}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{$fitFixturesGuid}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{$fitFixturesGuid}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

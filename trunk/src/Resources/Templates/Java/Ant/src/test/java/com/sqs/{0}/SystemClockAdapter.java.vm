@@ -1,0 +1,24 @@
+package com.sqs.${projectName};
+
+import java.util.Date;
+
+/**
+ *  * @author scottm
+ *  This adapter simply forwards to the SystemClock
+ *  and exposes the internal set and reset methods for testing purposes
+ */
+public class SystemClockAdapter {
+
+	public static Date getNow() {
+		return SystemClock.getNow();
+	}
+	
+	public static void set(Date value) {
+		SystemClock.set(value);
+	}
+
+	public static void reset() {
+		SystemClock.reset();
+	}
+
+}

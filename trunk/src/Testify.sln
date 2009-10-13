@@ -1,0 +1,88 @@
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{AF8BC649-0F2E-4D34-A259-D406F0438C02}"
+	ProjectSection(SolutionItems) = preProject
+		..\CopyLibFiles.bat = ..\CopyLibFiles.bat
+		..\CopySkeletonFiles.bat = ..\CopySkeletonFiles.bat
+		..\go.bat = ..\go.bat
+		..\license.txt = ..\license.txt
+		..\Testify.build = ..\Testify.build
+		..\Testify.nsi = ..\Testify.nsi
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestifyConsole", "TestifyConsole\TestifyConsole.csproj", "{4D1E9AF3-029C-44F6-B84D-1D6501BA579C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{122C6B21-ECAE-4535-9B15-F379A866F12F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{7BFC0E3E-3348-4DE3-AC80-C9769699DA0C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AcceptanceTests", "AcceptanceTests\AcceptanceTests.csproj", "{7CF4428D-1BD0-4C5C-885E-2706C9C8D761}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsUI", "WindowsUI\WindowsUI.csproj", "{C3F214DF-60A1-484F-AB09-1238248D9301}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		AutomatedDebug|Any CPU = AutomatedDebug|Any CPU
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4D1E9AF3-029C-44F6-B84D-1D6501BA579C}.AutomatedDebug|Any CPU.ActiveCfg = AutomatedDebug|Any CPU
+		{4D1E9AF3-029C-44F6-B84D-1D6501BA579C}.AutomatedDebug|Any CPU.Build.0 = AutomatedDebug|Any CPU
+		{4D1E9AF3-029C-44F6-B84D-1D6501BA579C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D1E9AF3-029C-44F6-B84D-1D6501BA579C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D1E9AF3-029C-44F6-B84D-1D6501BA579C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D1E9AF3-029C-44F6-B84D-1D6501BA579C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{122C6B21-ECAE-4535-9B15-F379A866F12F}.AutomatedDebug|Any CPU.ActiveCfg = AutomatedDebug|Any CPU
+		{122C6B21-ECAE-4535-9B15-F379A866F12F}.AutomatedDebug|Any CPU.Build.0 = AutomatedDebug|Any CPU
+		{122C6B21-ECAE-4535-9B15-F379A866F12F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{122C6B21-ECAE-4535-9B15-F379A866F12F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{122C6B21-ECAE-4535-9B15-F379A866F12F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{122C6B21-ECAE-4535-9B15-F379A866F12F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7BFC0E3E-3348-4DE3-AC80-C9769699DA0C}.AutomatedDebug|Any CPU.ActiveCfg = AutomatedDebug|Any CPU
+		{7BFC0E3E-3348-4DE3-AC80-C9769699DA0C}.AutomatedDebug|Any CPU.Build.0 = AutomatedDebug|Any CPU
+		{7BFC0E3E-3348-4DE3-AC80-C9769699DA0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7BFC0E3E-3348-4DE3-AC80-C9769699DA0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7BFC0E3E-3348-4DE3-AC80-C9769699DA0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7BFC0E3E-3348-4DE3-AC80-C9769699DA0C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7CF4428D-1BD0-4C5C-885E-2706C9C8D761}.AutomatedDebug|Any CPU.ActiveCfg = AutomatedDebug|Any CPU
+		{7CF4428D-1BD0-4C5C-885E-2706C9C8D761}.AutomatedDebug|Any CPU.Build.0 = AutomatedDebug|Any CPU
+		{7CF4428D-1BD0-4C5C-885E-2706C9C8D761}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7CF4428D-1BD0-4C5C-885E-2706C9C8D761}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7CF4428D-1BD0-4C5C-885E-2706C9C8D761}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7CF4428D-1BD0-4C5C-885E-2706C9C8D761}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C3F214DF-60A1-484F-AB09-1238248D9301}.AutomatedDebug|Any CPU.ActiveCfg = AutomatedDebug|Any CPU
+		{C3F214DF-60A1-484F-AB09-1238248D9301}.AutomatedDebug|Any CPU.Build.0 = AutomatedDebug|Any CPU
+		{C3F214DF-60A1-484F-AB09-1238248D9301}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3F214DF-60A1-484F-AB09-1238248D9301}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3F214DF-60A1-484F-AB09-1238248D9301}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3F214DF-60A1-484F-AB09-1238248D9301}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		VisualSVNWorkingCopyRoot = ..
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 6
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://tfs02.codeplex.com/
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = TestifyConsole\\TestifyConsole.csproj
+		SccProjectName1 = TestifyConsole
+		SccLocalPath1 = TestifyConsole
+		SccProjectUniqueName2 = Core\\Core.csproj
+		SccProjectName2 = Core
+		SccLocalPath2 = Core
+		SccProjectUniqueName3 = UnitTests\\UnitTests.csproj
+		SccProjectName3 = UnitTests
+		SccLocalPath3 = UnitTests
+		SccProjectUniqueName4 = AcceptanceTests\\AcceptanceTests.csproj
+		SccProjectName4 = AcceptanceTests
+		SccLocalPath4 = AcceptanceTests
+		SccProjectUniqueName5 = WindowsUI\\WindowsUI.csproj
+		SccProjectName5 = WindowsUI
+		SccLocalPath5 = WindowsUI
+	EndGlobalSection
+EndGlobal

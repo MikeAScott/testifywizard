@@ -1,0 +1,280 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{122C6B21-ECAE-4535-9B15-F379A866F12F}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>
+    </ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>ThoughtWorks.TreeSurgeon.Core</AssemblyName>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>Library</OutputType>
+    <RootNamespace>ThoughtWorks.TreeSurgeon.Core</RootNamespace>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <StartupObject>
+    </StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <OldToolsVersion>2.0</OldToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>..\..\build\Debug\Core\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>..\..\build\Release\Core\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>false</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>none</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'AutomatedDebug|AnyCPU' ">
+    <OutputPath>..\..\build\Debug\Core\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Commons, Version=1.0.1106.21941, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\nVelocity\Commons.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.0.33710, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\log4Net\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="NVelocity, Version=1.0.1106.21942, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\nVelocity\NVelocity.dll</HintPath>
+    </Reference>
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\CommonAssemblyInfo.cs">
+      <Link>CommonAssemblyInfo.cs</Link>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Configuration\ConfigurationElementCollectionT.cs" />
+    <Compile Include="Configuration\TemplateSettings.cs" />
+    <Compile Include="DirectoryListBuilder.cs" />
+    <Compile Include="FileTemplate.cs" />
+    <Compile Include="Generators\Content\DefaultDirectoryCopier.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Generators\Content\FileGeneratorWithTransformer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Generators\Content\IDirectoryCopier.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Generators\Content\ITransformer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Generators\Content\ITransformingFileGenerator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Generators\Content\IVelocityTransformerConfig.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Generators\Content\LazilyInitialisingVelocityTransformer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Generators\IGuidGenerator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Generators\StandardDotNetUpperCaseGuidGenerator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IDirectoryBuilder.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IGenerator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <None Include="Resources\Templates\2005\src\SolutionInfo.cs.vm" />
+    <Compile Include="SimpleDirectoryBuilder.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SimpleTreeGenerator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="TreeSurgeonFrontEnd.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Utils\IProcessExecutor.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Utils\Log.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Utils\ProcessExecutor.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Utils\ProcessInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Utils\ProcessReader.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Utils\ProcessResult.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config">
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Resources\skeleton\StartFitNesse.bat" />
+    <None Include="Resources\Templates\2003\ApplicationInfo.cs.vm" />
+    <None Include="Resources\Templates\2003\AssemblyInfo.cs.vm" />
+    <None Include="Resources\Templates\2003\Core.csproj.vm" />
+    <None Include="Resources\Templates\2003\FitNesseFixtures.csproj.vm" />
+    <None Include="Resources\Templates\2003\go.bat.vm" />
+    <None Include="Resources\Templates\2003\HelloWorld.cs.vm" />
+    <None Include="Resources\Templates\2003\Sapling.build.vm" />
+    <None Include="Resources\Templates\2003\Sapling.sln.vm" />
+    <None Include="Resources\Templates\2003\SaplingConsole.csproj.vm" />
+    <None Include="Resources\Templates\2003\Test1.cs.vm" />
+    <None Include="Resources\Templates\2003\TestApplicationInfo.cs.vm" />
+    <None Include="Resources\Templates\2003\TestApplicationInfoFitNesse_content.txt.vm" />
+    <None Include="Resources\Templates\2003\TestFixture.cs.vm" />
+    <None Include="Resources\Templates\2003\UnitTests.csproj.vm" />
+    <None Include="Resources\Templates\2005\src\Core\ApplicationInfo.cs.vm" />
+    <None Include="Resources\Templates\2005\src\FitFixtures\AssemblyInfo.cs.vm" />
+    <None Include="Resources\Templates\2005\FitNesse\FitNesseRoot\{0}Application\CompletedStories\content.txt.vm" />
+    <None Include="Resources\Templates\2005\src\Core\AssemblyInfo.cs.vm" />
+    <None Include="Resources\Templates\2005\src\Core\Core.csproj.vm" />
+    <None Include="Resources\Templates\2005\FitNesse\FitNesseRoot\{0}Application\CurrentIteration\content.txt.vm" />
+    <None Include="Resources\Templates\2005\src\FitFixtures\FitFixtures.csproj.vm" />
+    <None Include="Resources\Templates\2005\FitNesse\FitNesseRoot\FrontPage\content.txt.vm" />
+    <None Include="Resources\Templates\2005\FitNesse\FitNesseRoot\{0}Application\FutureStories\content.txt.vm" />
+    <None Include="Resources\Templates\2005\go.bat.vm" />
+    <None Include="Resources\Templates\2005\src\Console\HelloWorld.cs.vm" />
+    <None Include="Resources\Templates\2005\FitNesse\FitNesseRoot\{0}Application\IterationOne\content.txt.vm" />
+    <None Include="Resources\Templates\2005\RunAcceptanceTests.bat.vm" />
+    <None Include="Resources\Templates\2005\{0}.build.vm" />
+    <None Include="Resources\Templates\2005\src\{0}.sln.vm" />
+    <None Include="Resources\Templates\2005\FitNesse\FitNesseRoot\{0}Application\content.txt.vm" />
+    <None Include="Resources\Templates\2005\src\Console\Console.csproj.vm" />
+    <None Include="Resources\Templates\2005\FitNesse\FitNesseRoot\{0}Application\SetUp\content.txt.vm" />
+    <None Include="Resources\Templates\2005\buildConfig\Continuous.ccnet.config.vm" />
+    <None Include="Resources\Templates\2005\buildConfig\DevBuild.ccnet.config.vm" />
+    <None Include="Resources\Templates\2005\FitNesse\SuiteSaplingFitNesse_content.txt.vm" />
+    <None Include="Resources\Templates\2005\FitNesse\FitNesseRoot\{0}Application\properties.xml.vm" />
+    <None Include="Resources\Templates\2005\src\UnitTests\TestApplicationInfo.cs.vm" />
+    <None Include="Resources\Templates\2005\FitNesse\FitNesseRoot\{0}Application\CompletedStories\TestApplicationInfo\content.txt.vm" />
+    <None Include="Resources\Templates\2005\src\FitFixtures\TestFixture.cs.vm" />
+    <None Include="Resources\Templates\2005\src\UnitTests\UnitTests.csproj.vm" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\skeleton\StartFitNesseServer.bat" />
+    <None Include="Resources\Templates\2005\buildConfig\ccnet.config.include.txt.vm" />
+    <None Include="Resources\Templates\2005\buildConfig\ImportToSvn.bat.vm" />
+    <None Include="Resources\Templates\2005\buildConfig\PrepareCIBuild.bat.vm" />
+    <None Include="Resources\Templates\2005\FitNesse\FitNesseRoot\{0}Application\CompletedStories\properties.xml.vm" />
+    <None Include="Resources\Templates\2005\FitNesse\FitNesseRoot\{0}Application\CurrentStories\content.txt.vm" />
+    <None Include="Resources\Templates\2005\FitNesse\FitNesseRoot\{0}Application\CurrentStories\properties.xml.vm" />
+    <None Include="Resources\Templates\2005\FitNesse\FitNesseRoot\{0}Application\FutureStories\properties.xml.vm" />
+    <None Include="Resources\Templates\2005\FitNesse\FitNesseRoot\{0}Application\IterationOne\properties.xml.vm" />
+    <None Include="Resources\Templates\2005\src\Console\AssemblyInfo.cs.vm" />
+    <None Include="Resources\Templates\2005\src\UnitTests\AssemblyInfo.cs.vm" />
+    <None Include="Resources\Templates\2005\StartNUnitGUI.bat.vm" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>..\..\..\CopyLibFiles.bat "$(SolutionDir)"</PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>
