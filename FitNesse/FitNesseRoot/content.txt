@@ -1,0 +1,12 @@
+!contents
+
+!path classes
+!path fitnesse.jar
+!path fitlibrary.jar
+
+!*> Set Up of the .NET 2.0 Runtime
+!define COMMAND_PATTERN {%m %p}
+!define TEST_RUNNER {dotnet2\FitServer.exe}
+!define PATH_SEPARATOR {;}
+!path dotnet2\*.dll
+*!

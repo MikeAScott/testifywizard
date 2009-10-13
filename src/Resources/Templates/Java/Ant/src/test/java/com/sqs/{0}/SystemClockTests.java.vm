@@ -1,0 +1,36 @@
+package com.sqs.${projectName};
+
+import static org.junit.Assert.*;
+
+import java.util.Date;
+import java.util.GregorianCalendar;
+
+import org.junit.*;
+
+public class SystemClockTests {
+	@Before
+	public void setup() {
+		SystemClock.reset();
+	}
+	
+	@Test
+	public void SystemClockNowReturnsDataTimeNowByDefault() {
+		assertEquals(new Date(), SystemClock.getNow());
+	}
+
+	@Test
+	public void CanFixTimeOnSystemClock() {
+		Date setTime = new GregorianCalendar(2003, 04, 05).getTime();
+		SystemClock.set(setTime);
+		assertEquals(setTime, SystemClock.getNow());
+	}
+
+	@Test
+	public void CanResetTimeOnSystemClock() {
+		Date setTime = new GregorianCalendar(2003, 04, 05).getTime();
+		SystemClock.set(setTime);
+		SystemClock.reset();
+		assertEquals(new Date(), SystemClock.getNow());
+	}
+
+}

@@ -1,0 +1,13 @@
+<cb:scope projectName="${projectName}" svnRepository="$(svnDefaultRepository)" xmlns:cb="urn:ccnet.config.builder">
+	<cb:define name="continuousProjectPublishers" />
+	<cb:define name="devBuildProjectPublishers" />
+	<cb:svnContinuousBuild 
+		versionPrefix="0.0.0." 
+		buildTimeout="180" 
+	/>
+	<cb:svnDevBuild 
+		versionPrefix="0.0.1." 
+		buildTimeout="1200" 
+		fitNessePort="8889"
+	/>
+</cb:scope>

@@ -1,0 +1,15 @@
+package com.sqs.${projectName}.fitfixtures;
+
+import com.sqs.${projectName}.SystemClockAdapter;
+
+import fit.Fixture;
+import fit.Parse;
+
+public class ResetSystemClockFixture extends Fixture {
+
+	@Override
+	public void doTable(Parse table) {
+		SystemClockAdapter.reset();
+	}
+	
+}

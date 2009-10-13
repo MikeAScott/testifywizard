@@ -1,0 +1,32 @@
+!1 Control System Clock in Testing
+
+!*** !-<h3>Story</h3>-!
+'''As a:''' Tester
+'''I want to:''' take control of the system clock
+'''So that:''' I can test time dependent features of the application
+***!
+
+!3 Tests
+!|Import|
+|${FIXTURE_PACKAGE}|
+
+!5 By default the system clock is in sync with internal ''Date'' class
+!|Check Time|
+|System Clock Time?|Date Time Now?|Diff?|
+|||0|
+
+!5 We can set the system clock to a given date
+!|Set System Clock|03/02/2001|
+
+!|Check Time|
+|System Clock Time?|
+|03/02/2001|
+
+!5 We can reset the system clock after setting to resync with ''Date'' class
+!|Reset System Clock|
+
+!|Check Time|
+|System Clock Time?|Date Time Now?|Diff?|
+|||0|
+
+

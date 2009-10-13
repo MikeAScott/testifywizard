@@ -1,0 +1,28 @@
+!include -c FixturePath
+!path ${SUT_PATH}
+!path ${FIXTURE_PATH}
+
+!1 ${projectName} Application
+
+!** Business Brief
+Put information about the business context of your application here
+
+**!
+!** Actors and Goals
+The table below lists the main actors and their primary goals and interests or concerns.
+|!3 Actor|!3 Primary Goal|!3 Interests / Concerns|
+||||
+
+***!
+!3 >StoryTests contains tests for the whole application organised by function
+!3 >IterationPlan contains pages and tests for each iteration
+!2 Story Tests are also organised by status as follows:
+!3 >CompletedStories are regression tested and must always pass
+!3 >CurrentStories are those from the >CurrentIteration  
+!3 >FutureStories are also known as the Product Backlog
+----
+!**> Subwiki Contents
+!contents -R2 -g -p -f -h
+
+**!
+

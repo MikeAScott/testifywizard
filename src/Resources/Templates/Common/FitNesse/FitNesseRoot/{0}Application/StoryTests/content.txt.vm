@@ -1,0 +1,5 @@
+!1 Story Tests for ${projectName}Application
+
+This suite contains all stories for the application, organised by function.
+
+!contents -R2 -g -p -f -h

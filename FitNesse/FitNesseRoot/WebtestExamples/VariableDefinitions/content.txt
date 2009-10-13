@@ -1,0 +1,9 @@
+to change fitnesse server port, edit this line
+
+!define server {http://localhost:8080}
+
+to change browser, edit this line
+
+!define browser {IE}
+
+#define browser {*chrome /opt/firefox/firefox-bin}

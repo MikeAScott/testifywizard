@@ -1,0 +1,24 @@
+﻿using System;
+
+namespace ${projectName}.Core {
+	public static class SystemClock {
+
+		private static DateTime? fixedTime;
+
+		public static DateTime Now {
+			get {
+				if (fixedTime.HasValue)
+					return fixedTime.Value;
+				return DateTime.Now;
+			}
+		}
+
+		internal static void Set(DateTime value) {
+			fixedTime = value;
+		}
+
+		internal static void Reset() {
+			fixedTime = null;
+		}
+	}
+}

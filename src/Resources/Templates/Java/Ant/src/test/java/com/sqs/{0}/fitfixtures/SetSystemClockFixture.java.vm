@@ -1,0 +1,29 @@
+package com.sqs.${projectName}.fitfixtures;
+
+import java.util.Date;
+import java.util.GregorianCalendar;
+
+import com.sqs.${projectName}.SystemClockAdapter;
+
+import fit.Fixture;
+import fit.Parse;
+import fit.TypeAdapter;
+
+public class SetSystemClockFixture extends Fixture {
+
+	@Override
+	public void doTable(Parse table) {
+		if (args.length < 1) {
+			throw new Error("Date and time to set must be supplied");
+		}
+		TypeAdapter ta = TypeAdapter.adapterFor(Date.class);
+		
+		try {
+			Date val = (Date) parse(args[0],Date.class);
+			SystemClockAdapter.set(val);
+		} catch (Exception e) {
+			throw new Error(e);
+		}
+	}
+	
+}

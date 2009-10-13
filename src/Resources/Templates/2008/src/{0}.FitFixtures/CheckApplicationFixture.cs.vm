@@ -1,0 +1,13 @@
+using System;
+using fit;
+using ${projectName}.Core;
+
+namespace ${projectName}.FitFixtures
+{
+    public class CheckApplicationFixture: ColumnFixture{
+        public string Name() {
+            return ApplicationInfo.ApplicationName;
+        }
+    }
+}
+

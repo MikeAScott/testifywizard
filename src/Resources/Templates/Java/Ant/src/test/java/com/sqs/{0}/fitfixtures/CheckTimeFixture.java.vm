@@ -1,0 +1,23 @@
+package com.sqs.${projectName}.fitfixtures;
+
+import java.util.Date;
+
+import com.sqs.${projectName}.SystemClock;
+
+import fit.ColumnFixture;
+
+public class CheckTimeFixture extends ColumnFixture {
+
+	public Date systemClockTime() {
+		return SystemClock.getNow();
+	}
+
+	public Date dateTimeNow() {
+		return new Date();
+	}
+
+	public int Diff() {
+		return SystemClock.getNow().compareTo(new Date()); 
+	}
+
+}

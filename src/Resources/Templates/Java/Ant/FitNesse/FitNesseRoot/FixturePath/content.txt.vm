@@ -1,0 +1,3 @@
+!define FIXTURE_PATH {..\target\test-classes}
+!define SUT_PATH {..\target\classes}
+!define FIXTURE_PACKAGE {com.sqs.${projectName}.fitfixtures}

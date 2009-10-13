@@ -1,0 +1,11 @@
+!1 In Progress Stories
+!2 These are the stories still to be completed in the CurrentIteration
+
+Stories are moved to this subwiki from the FutureStories backlog when their iteration starts.
+
+To check the progress of story completion for this iteration, run the Suite on the CurrentIteration page.
+If you test the stories on this page (press the "Suite" button) we expect the acceptance tests to fail.
+When a story is complete (the tests pass) move it to CompletedStories.
+
+!see StoryTests.StoryOne
+!see StoryTests.StoryTwo

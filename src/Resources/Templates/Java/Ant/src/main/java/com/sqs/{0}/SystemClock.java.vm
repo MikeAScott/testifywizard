@@ -1,0 +1,23 @@
+package com.sqs.${projectName};
+
+import java.util.Date;
+
+public class SystemClock {
+	
+	private static Date fixedTime;
+	
+	public static Date getNow() {
+		if (fixedTime != null)
+			return fixedTime;
+		return new Date();
+	}
+	
+	static void set(Date value) {
+		fixedTime = value;
+	}
+
+	static void reset() {
+		fixedTime = null;
+	}
+
+}

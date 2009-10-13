@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- WARNING: Eclipse auto-generated file.
+              Any modifications will be overwritten.
+              To include a user specific buildfile here, simply create one in the same
+              directory with the processing instruction <?eclipse.ant.import?>
+              as the first entry and export the buildfile again. -->
+<project basedir="." default="test" name="${projectName}">
+	<property name="version" value="0.0.1-SNAPSHOT" />
+    <property environment="env"/>
+	<property name="src.dir" value="src/main/java" />
+	<property name="test.dir" value="src/test/java" />
+	<property name="target.dir" value="target" />
+	<property name="report.dir" value="target/test-reports" />
+    <property name="junit.output.dir" value="${report.dir}/junit"/>
+    <property name="coverage.output.dir" value="${report.dir}/cobertura"/>
+    <property name="debuglevel" value="source,lines,vars"/>
+    <property name="target" value="1.6"/>
+    <property name="source" value="1.6"/>
+    <path id="JUnit 4.libraryclasspath">
+        <pathelement location="lib/junit-4.5.jar"/>
+    </path>
+    <path id="project.classpath">
+        <pathelement location="bin"/>
+        <path refid="JUnit 4.libraryclasspath"/>
+        <pathelement location="lib/fitlibrary.jar"/>
+        <pathelement location="lib/fitnesse.jar"/>
+        <pathelement location="lib/cglib-2.1_3-src.jar"/>
+        <pathelement location="lib/cglib-nodep-2.1_3.jar"/>
+        <pathelement location="lib/easymock.jar"/>
+        <pathelement location="lib/easymockclassextension.jar"/>
+    </path>
+	
+	<path id="Test.classpath">
+		<path refid="project.classpath" />
+        <pathelement location="target/instrumented-classes/"/>
+        <pathelement location="target/classes/"/>
+        <pathelement location="target/test-classes/"/>
+	</path>
+	
+	<path id="cobertura.classpath">
+		<fileset dir="lib\cobertura-1.9.3">
+			<include name="cobertura.jar" />
+			<include name="lib/**/*.jar" />
+		</fileset>
+	</path>
+	<taskdef classpathref="cobertura.classpath" resource="tasks.properties" />	
+
+    <target name="init">
+        <mkdir dir="target"/>
+        <mkdir dir="target/classes"/>
+        <mkdir dir="target/test-classes"/>
+        <copy includeemptydirs="false" todir="bin">
+            <fileset dir="src" excludes="**/*.launch, **/*.java"/>
+        </copy>
+    </target>
+
+    <target name="clean">
+        <delete dir="target"/>
+    </target>
+
+    <target depends="clean" name="cleanall"/>
+	<target name="build" depends="build-subprojects,build-project" />
+	<target name="test" depends="build, unit-test"  />
+	<target name="package" depends="build, unit-test, jar" />
+
+    <target name="build-subprojects"/>
+    
+	<target depends="init" name="build-project">
+        <echo message="${ant.project.name}: ${ant.file}"/>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="target/classes" source="${source}" target="${target}">
+            <src path="${src.dir}"/>
+            <classpath refid="project.classpath"/>
+        </javac>
+        <echo message="${ant.project.name}: ${ant.file} Tests"/>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="target/test-classes" source="${source}" target="${target}">
+            <src path="${test.dir}"/>
+            <classpath refid="Test.classpath">
+			</classpath>
+        </javac>
+    </target>
+	
+    <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
+
+    <target description="copy Eclipse compiler jars to ant lib directory" name="init-eclipse-compiler">
+        <copy todir="${ant.library.dir}">
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </copy>
+        <unzip dest="${ant.library.dir}">
+            <patternset includes="jdtCompilerAdapter.jar"/>
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </unzip>
+    </target>
+ 
+	<target description="compile project with Eclipse compiler" name="build-eclipse-compiler">
+        <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
+        <antcall target="build"/>
+    </target>
+
+	<target name="unit-test" >
+		<cobertura-instrument todir="target/instrumented-classes">
+			<fileset dir="target/classes">
+				<include name="**/*.class"/>
+			</fileset>
+		</cobertura-instrument>
+
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <classpath refid="Test.classpath"/>
+            <classpath refid="cobertura.classpath"/>
+			<batchtest fork="yes" todir="${junit.output.dir}">
+				<fileset dir="target/test-classes">
+					<include name="**/*Test*.class"/>
+				</fileset>
+			</batchtest>
+        </junit>
+
+        <junitreport todir="${junit.output.dir}">
+            <fileset dir="${junit.output.dir}">
+                <include name="TEST-*.xml"/>
+            </fileset>
+            <report format="frames" todir="${junit.output.dir}"/>
+        </junitreport>
+		<cobertura-report format="xml" srcdir="${src.dir}" destdir="${coverage.output.dir}"/>
+		<cobertura-report format="html" srcdir="${src.dir}" destdir="${coverage.output.dir}"/>
+	</target>
+	
+    <target name="jar">
+        <jar jarfile="target/${projectName}-${version}.jar" basedir="target/classes"/>
+        <jar jarfile="target/${projectName}-${version}-tests.jar" basedir="target/test-classes"/>
+    </target>
+	
+</project>
+

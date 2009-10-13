@@ -1,0 +1,19 @@
+package com.sqs.${projectName};
+
+import org.junit.*;
+
+import static org.junit.Assert.*;
+
+public class ApplicationInfoTests {
+	
+	@Test
+	public void canInstantiateApplicationInfo() {
+		assertNotNull(new ApplicationInfo());
+	}
+	
+	@Test
+	public void canGetApplicationName() {
+		assertEquals("${projectName}", ApplicationInfo.getApplicationName());
+	}
+		
+}

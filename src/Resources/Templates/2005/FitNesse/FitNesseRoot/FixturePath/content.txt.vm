@@ -1,0 +1,3 @@
+!define FIXTURE_PATH {..\build\Debug\FitFixtures\*.dll}
+!define SUT_PATH {..\build\Debug\\FitFixtures\\*.dll}
+!define FIXTURE_PACKAGE {${projectName}.FitFixtures}

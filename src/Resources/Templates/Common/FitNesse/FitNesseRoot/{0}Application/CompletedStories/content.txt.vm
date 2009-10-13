@@ -1,0 +1,9 @@
+!1 Regression Test Suite for Completed Stories
+
+This suite re-tests all stories that have been completed. They should always pass: if an error occurs here then it is a regression error and must be fixed immediately.
+
+Stories are moved to this subwiki from the CurrentStories, once they are passing.
+
+!see StoryTests.TestApplicationInfo
+!see StoryTests.TestSystemClock
+

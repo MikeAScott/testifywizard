@@ -1,0 +1,203 @@
+﻿<?xml version="1.0" ?>
+<project name="nant" default="unit-test" xmlns="http://nant.sf.net/schemas/nant.xsd">
+	<property name="build.dir" value="build" />
+
+	<!-- User targets -->
+	<target name="clean" description="Delete Automated Build artifacts">
+		<delete dir="${build.dir}" if="${directory::exists('build')}"/>
+	</target>
+	
+	<target name="clean-vs" description="Delete Visual Studio artifacts">
+		<!-- NB - this target will likely fail if you have the solution open in Visual Studio -->
+		<foreach item="File" property="filename">
+			<in>
+				<items basedir="src">
+					<include name="*.suo" />
+					<include name="*.resharperoptions" />
+					<include name="*\*.user" />
+				</items>
+			</in>
+			<do>
+				<delete file="${filename}" />
+			</do>
+		</foreach>
+		<foreach item="Folder" property="foldername">
+			<in>
+				<items basedir="src">
+					<include name="*\bin" />
+					<include name="*\obj" />
+					<!-- can't seem to pick this up using a wild card -->
+					<include name="_ReSharper.Testify" />
+				</items>
+			</in>
+			<do>
+				<delete dir="${foldername}" />
+			</do>
+		</foreach>
+	</target>
+
+	<target name="compile" description="Compiles using the AutomatedDebug Configuration">
+    <msbuild project="src\Testify.sln">
+      <property name="Configuration" value="AutomatedDebug" />
+    <!--
+	  <property name="TargetFX1_1" value="true" />
+      <property name="CustomAfterMicrosoftCommonTargets" value="${path::get-full-path('tools\MSBee\MSBuildExtras.Fx1_1.CSharp.targets')}" />
+    -->       
+	</msbuild>
+	</target>
+
+	<target name="unit-test" depends="compile, run-unit-tests"
+		description="Compile and Run Tests" />
+
+	<target name="test" depends="compile, run-unit-tests, run-acceptance-tests" 
+		description="Compile and Run Tests" />
+		
+	<target name="full" depends="clean, test, dist" />
+	
+	<target name="install" depends="full, run-installer" description="Installs Tree Surgeon" />
+
+	<target name="continuous-integration" depends="clean, continuous-integration-setup-versioning, full, continuous-integration-publish" />
+	
+	<!-- Internal targets -->
+	<target name="run-unit-tests">
+		<mkdir dir="${build.dir}\test-reports" />
+<!--
+		<exec program="regsvr32" workingdir="tools\ncover" commandline="/s CoverLib.dll" />
+		<exec 
+			program="tools\NCover\NCover.Console.exe" 
+			workingdir="${build.dir}\Debug\UnitTests">
+			<arg value="/w" />
+			<arg value="." />
+			<arg value="/o" />
+			<arg value="..\..\test-reports\Coverage.xml" />
+			<arg value="/c" />
+			<arg value="&quot;..\..\..\tools\nunit\nunit-console.exe&quot;" />
+			<arg value="&quot;ThoughtWorks.Testify.UnitTests.dll /xml:..\..\test-reports\UnitTests.xml /nologo&quot;" />
+		</exec>
+-->
+		<!-- This runs NUnit through NCover.org version 1.3, giving coverage results. 
+			If you don't want to use NCover, delete this 'exec' instance, and use the plain NUnit one below -->
+		<exec 
+			program="tools\NCover\NCover.Console.exe" 
+			workingdir="${build.dir}\Debug\UnitTests">
+			<arg value="&quot;..\..\..\tools\nunit\nunit-console.exe&quot;" />
+			<arg value="ThoughtWorks.TreeSurgeon.UnitTests.dll" />
+			<arg value="/xml:..\..\test-reports\UnitTests.xml" />
+			<arg value="/nologo" />
+			<arg value="//w" />
+			<arg value="." />
+			<arg value="//x" />
+			<arg value="..\..\test-reports\Coverage.xml" />
+			<arg value="//reg" />
+		</exec>
+		<copy file="tools\NCover\Coverage.xsl" tofile="${build.dir}\test-reports\Coverage.xsl" />
+	</target>
+
+	<target name="run-acceptance-tests">
+		<copy todir="${build.dir}\Debug\AcceptanceTests">
+			<fileset basedir="${build.dir}\Debug\TestifyConsole">
+				<include name="**\*" />
+			</fileset>
+		</copy>
+		<mkdir dir="${build.dir}\test-reports" />
+		<exec program="nunit-console.exe" basedir="tools\nunit" workingdir="${build.dir}\Debug\AcceptanceTests">
+			<arg value="SQS.Testify.AcceptanceTests.dll" />
+			<arg value="/xml:..\..\test-reports\AcceptanceTests.xml" />
+		</exec>
+	</target>
+	
+	<target name="dist">
+		<!-- Binary zip -->
+		<copy todir="${build.dir}\dist">
+			<fileset basedir="${build.dir}\Debug\TestifyConsole">
+				<include name="**\*"/>
+				<exclude name="**\*.pdb" />
+				<exclude name="**\PostBuildEvent.bat" />
+			</fileset>
+		</copy>
+		<copy todir="${build.dir}\dist">
+			<fileset basedir="${build.dir}\Debug\WindowsUI">
+				<include name="**\*"/>
+				<exclude name="**\*.pdb" />
+				<exclude name="**\PostBuildEvent.bat" />
+			</fileset>
+		</copy>
+		<copy file="Testify-license.txt" tofile="${build.dir}\dist\Testify-license.txt"/>
+		<copy file="tools\nant\license.html" tofile="${build.dir}\dist\nant-license.html" />
+		<copy file="tools\nunit\license.html" tofile="${build.dir}\dist\nunit-license.html" />
+		<zip zipfile="${build.dir}\Testify.zip">
+			<fileset basedir="${build.dir}\dist">
+				<include name="**\*" />
+			</fileset>
+		</zip>
+
+		<!-- Source Zip -->
+		<copy todir="${build.dir}\dist-src">
+			<fileset>
+				<include name="**\*"/>
+				<exclude name="build\**\*" />
+				<exclude name="dist" />
+				<exclude name="dist/**" />
+				<exclude name="installer/**" />
+				<exclude name="src/*/bin" />
+				<exclude name="src/*/obj" />
+				<exclude name="src/*/bin/**" />
+				<exclude name="src/*/obj/**" />
+				<exclude name="**/*.suo" />
+				<exclude name="**/*.user" />
+				<exclude name="**/*.resharperoptions" />
+				<exclude name="src\_ReSharper.Testify\**\*" />
+			</fileset>
+		</copy>
+		<zip zipfile="${build.dir}\Testify-Source.zip">
+			<fileset basedir="${build.dir}\dist-src">
+				<include name="**\*" />
+			</fileset>
+		</zip>
+
+		<!-- Installer -->
+		<exec program="tools\NSIS\makensis.exe" commandline="Testify.nsi" />
+		
+		<mkdir dir="installer" />
+		<copy file="${build.dir}\Testify-Setup.exe" todir="installer" />
+		<copy file="${build.dir}\Testify-Source.zip" todir="installer" />
+
+	</target>
+	
+	<target name="run-installer">
+		<exec program="${build.dir}\Testify-Setup.exe" />
+	</target>
+	
+	<target name="continuous-integration-setup-versioning">
+		<ifnot test="${property::exists('CCNetLabel')}">
+			<fail message="CCNetLabel property not set, so can't create labelled distribution files" />
+		</ifnot>
+
+		<regex pattern="(?'major'\d+)_(?'minor'\d+)_(?'revision'\d+)_(?'build'\d+)" input="${CCNetLabel}" />
+		<property name="build.number" value="${major}.${minor}.${revision}.${build}" />
+		<echo message="Build number: ${build.number}"/>
+	
+		<asminfo output="src/CommonAssemblyInfo.cs" language="CSharp">
+			<imports>
+				<import name="System.Reflection" />
+			</imports>
+			<attributes>
+				<attribute type="AssemblyVersionAttribute" value="${build.number}" />
+				<attribute type="AssemblyCopyrightAttribute" value="Copyright © 2005 ThoughtWorks Inc." />
+				<attribute type="AssemblyCompanyAttribute" value="ThoughtWorks" />
+				<attribute type="AssemblyProductAttribute" value="Tree Surgeon" />
+			</attributes>
+		</asminfo>
+	</target>
+		
+	<target name="continuous-integration-publish">
+		<property name="publish.dir" value="e:\download-area\Testify-Builds\${CCNetLabel}" />
+		<mkdir dir="${publish.dir}" />
+		<copy todir="${publish.dir}">
+			<fileset basedir="build">
+				<include name="*.exe"/>
+				<include name="*.zip"/>
+			</fileset>
+		</copy>			
+	</target>
+</project>

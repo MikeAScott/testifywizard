@@ -1,0 +1,13 @@
+package com.sqs.${projectName}.fitfixtures;
+
+import fit.ColumnFixture;
+import com.sqs.${projectName}.ApplicationInfo;
+
+
+public class CheckApplicationFixture extends ColumnFixture{
+	
+	public String name() {
+		return ApplicationInfo.getApplicationName();
+	}
+
+}

@@ -1,0 +1,212 @@
+<?xml version="1.0" ?>
+<project name="${projectName}" default="build" xmlns="http://nant.sf.net/schemas/nant.xsd">
+	<property name="nant.settings.currentframework" value="net-3.5" />
+	<loadtasks path="tools\nant\extensions" />
+	<property name="project.name" value="${projectName}" />
+	<property name="build.dir" value="build" />
+	<property name="report.dir" value="${build.dir}\test-reports" />
+	<property name="configuration" value="Debug" overwrite="false"/>
+	<property name="fitnesse.server" value="localhost" />
+	<property name="fitnesse.port" value="8088" overwrite="false"/>
+	<property name="CCNetLabel" value="0.0.0.1" overwrite="false"/>
+	<property name="version" value="${CCNetLabel}" overwrite="false"/>
+
+	<!-- User targets -->
+	<target name="clean" description="Delete Automated Build artifacts">
+		<delete>
+			<fileset>
+				<include name="src/**/obj/**" />
+			</fileset>
+		</delete>
+		<delete dir="${build.dir}" if="${nantDeleteClause}"/>
+	</target>
+
+	<target name="build" depends="compile, run-unit-tests, run-fxcop-analysis" description="Compile and Run Unit Tests" />
+	
+	<target name="test" depends="build, run-regression-tests, run-acceptance-tests" description="Build and run acceptance tests" />
+		
+	<target name="full" depends="clean, test, dist"	description="Compiles, tests, and produces distributions" />
+
+	<!-- Internal targets -->
+	<target name="compile" description="Compiles using the Configuration">
+		<property name="versionInfo.file" value="src\VersionInfo.cs" />
+		<attrib file="${versionInfo.file}" normal="true" />
+		<asminfo output="${versionInfo.file}" language="CSharp">
+			<imports>
+				<import namespace="System" />
+				<import namespace="System.Reflection" />
+			</imports>
+			<attributes>
+				<attribute type="AssemblyVersionAttribute" value="${version}" />
+			</attributes>
+		</asminfo>
+		<msbuild project="src\${project.name}.sln">
+			<property name="Configuration" value="${configuration}" />
+		</msbuild>
+	</target>
+	
+	<target name="run-unit-tests">
+		<mkdir dir="${report.dir}" />
+		<property name="test.type" value="UnitTests" />
+		<ncover program="tools\NCover\NCover.Console.exe" 
+			commandLineExe="tools\nunit\nunit-console.exe"
+			coverageFile="${report.dir}\${project.name}.${test.type}.NCoverReport.xml"
+			logFile="${report.dir}\${project.name}.${test.type}.NCover.log"
+			excludeAttributes="NUnit.Framework.TestFixtureAttribute;CoverageExcludeAttribute"
+			commandLineArgs="${project.name}.${test.type}.nunit /xml:${report.dir}\${project.name}.${test.type}.NUnitReport.xml /nologo"
+			/>
+			<echo message="Starting NCoverExplorer report generation..."/>
+		
+			<!-- Other attributes that can be used on ncoverexplorer element:               -->
+			<!-- /r[eport] Report type (1 = ModuleSummary, 3 = ModuleNamespaceSummary,  4 = ModuleClassSummary, 5 = ModuleClassFunctionSummary) -->
+			<ncoverexplorer program="tools\NCoverExplorer\NCoverExplorer.Console.exe"
+							projectName="${project.name}"
+							reportType="4"
+							outputDir="${report.dir}" 
+							xmlReportName="${project.name}.${test.type}.CoverageReport.xml"
+							htmlReportName="${project.name}.${test.type}.CoverageReport.html"
+							showExcluded="True"
+							satisfactoryCoverage="80"
+							failMinimum="False">
+				<fileset>
+					<include name="${report.dir}\${project.name}.${test.type}.NCoverReport.xml"/>
+				</fileset>
+				<exclusions> <!-- Valid exclusion 'type' attributes are 'Assembly', 'Namespace', 'Class'. -->
+					<exclusion type="Assembly" pattern="*.UnitTests" />
+					<exclusion type="Namespace" pattern="*.UnitTests"/>
+				</exclusions>
+			</ncoverexplorer>
+			
+		<copy file="tools\NCover\Coverage.xsl" tofile="${report.dir}\Coverage.xsl" />
+	</target>
+
+	<target name="run-unit-tests-without-coverage">
+		<mkdir dir="${report.dir}" />
+		<exec program="nunit-console.exe" basedir="tools\nunit" workingdir=".">
+			<arg value="${project.name}.nunit" />
+			<arg value="/xml:${report.dir}\${project.name}.UnitTests.xml" />
+		</exec>
+	</target>
+
+	<target name="run-fxcop-analysis">
+		<mkdir dir="${report.dir}" />
+		<copy file="tools\FxCop\xml\FxCopReport.xsl" tofile="${report.dir}\FxCopReport.xsl" />
+		<exec program="FxCopCmd.exe" basedir="tools\FxCop" workingdir=".">
+			<arg line="/p:${project.name}.FxCop /out:${report.dir}\${project.name}.FxCopReport.xml /forceoutput /sf" />
+		</exec>
+	</target>
+
+	<target name="run-regression-tests" >
+		<property name="suite.name" value="${project.name}Application.CompletedStories"/>
+		<property name="fail.on.error" value="true"/>
+		<call target="run-fitnesse-tests" />
+	</target>
+
+	<target name="run-acceptance-tests" >
+		<property name="suite.name" value="${project.name}Application"/>
+		<property name="fail.on.error" value="false"/>
+		<call target="run-fitnesse-tests" />
+	</target>
+	
+	<target name="run-fitnesse-tests">
+		<property name="suite.name" value="${project.name}Application" overwrite="false" />
+		<property name="fail.on.error" value="false" overwrite="false" />
+		<property name="results.file" value="${report.dir}\${suite.name}.results" />
+		<property name="report.file" value="${report.dir}\${suite.name}.AcceptanceTestReport" />
+		<mkdir dir="${report.dir}" />
+
+		<call target="start-fitnesse" />
+		
+		<exec program="FitNesse\dotnet2\TestRunner.exe" workingdir="FitNesse" failonerror="false" resultproperty="fitnesse.testresult">
+			<arg line="-v -results ..\${results.file} ${fitnesse.server} ${fitnesse.port} ${suite.name}" />
+		</exec>
+		<exec program="java" workingdir="FitNesse">
+			<arg line="-cp fitnesse.jar fitnesse.runner.FormattingOption ..\${results.file} html ..\${report.file}.html ${fitnesse.server} ${fitnesse.port} ${suite.name}" />
+		</exec>
+		<exec program="java" workingdir="FitNesse">
+			<arg line="-cp fitnesse.jar fitnesse.runner.FormattingOption ..\${results.file} xml ..\${report.file}.xml ${fitnesse.server} ${fitnesse.port} ${suite.name}" />
+		</exec>
+		
+		<call target="stop-fitnesse" />
+		
+		<delete file="${results.file}" />
+		<fail message="${suite.name} acceptance tests failed" if="${(fail.on.error and int::parse(fitnesse.testresult)!=0)}" />
+	</target>
+	
+	<target name="start-fitnesse" >
+		<asyncexec program="java.exe" workingdir="FitNesse" waitforexit="true" taskname="fitnesse">
+			<arg line="-Xrs -cp fitnesse.jar;RichNesse.jar fitnesse.FitNesse -p ${fitnesse.port} -e 0 -o" />
+		</asyncexec>
+		<echo message="Waiting for FitNesse to start" />
+		<sleep seconds="5" />
+	</target>
+	
+	<target name="stop-fitnesse" >
+		<echo message="Stopping FitNesse" />
+	    <asynckill>
+			<tasknames>
+				<string value="fitnesse"/>
+			</tasknames>
+		</asynckill>
+	</target>
+
+	<target name="dist">
+		<copy todir="${build.dir}\dist\bin" flatten="true">
+			<fileset basedir="${build.dir}\${configuration}">
+				<include name="**\*"/>
+				<exclude name="**\*.pdb" />
+				<exclude name="**\*.UnitTests\*" />
+				<exclude name="**\*.FitFixtures\*" />
+				<exclude name="**\fit.dll" />
+				<exclude name="**\FitLibrary.dll" />
+				<exclude name="**\eg.dll" />
+				<exclude name="**\*.UnitTest.Framework\*" />
+			</fileset>
+		</copy>
+		<copy todir="${build.dir}\dist\UnitTest" flatten="true">
+			<fileset basedir="${build.dir}\${configuration}">
+				<include name="**\*.UnitTests\*"/>
+				<include name="**\*.UnitTest.Framework\*" />
+				<exclude name="**\*.pdb" />
+			</fileset>
+		</copy>
+		<copy todir="${build.dir}\dist\AcceptanceTest" flatten="true">
+			<fileset basedir="${build.dir}\${configuration}">
+				<include name="**\*.FitFixtures\*" />
+				<exclude name="**\fit.dll" />
+				<exclude name="**\FitLibrary.dll" />
+				<exclude name="**\eg.dll" />
+				<exclude name="**\*.pdb" />
+			</fileset>
+		</copy>
+		<copy todir="${build.dir}\dist\AcceptanceTest" flatten="true">
+			<fileset basedir=".">
+				<include name="StartFitNesse.bat" />
+			</fileset>
+		</copy>
+		<copy todir="${build.dir}\dist\AcceptanceTest\FitNesse">
+			<fileset basedir="FitNesse">
+				<include name="**\*" />
+				<exclude name="**\*.pdb" />
+			</fileset>
+		</copy>
+		<echo message="!define FIXTURE_PATH {..\${project.name}.FitFixtures.dll}" file="${build.dir}\dist\AcceptanceTest\FitNesse\FitNesseRoot\FixturePath\content.txt" />
+		<copy todir="${build.dir}\dist\DebugSymbols" flatten="true">
+			<fileset basedir="${build.dir}\${configuration}">
+				<include name="**\*.pdb"/>
+			</fileset>
+		</copy>
+		<!-- Make a Zip -->
+		<zip zipfile="${build.dir}\dist\${project.name}.zip">
+			<fileset basedir="${build.dir}\dist">
+				<include name="**\*" />
+			</fileset>
+		</zip>
+		<!-- Installer -->
+		<mkdir dir="installer" />
+		<exec program="tools\NSIS\makensis.exe" commandline="${project.name}.nsi" />
+		
+	</target>
+	
+</project>
+

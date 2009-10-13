@@ -1,0 +1,7 @@
+!img-l http://files/images/FitNesseLogoMedium.jpg
+!1 Welcome to [[FitNesse!][http://fitnesse.org]]
+!3 ''The fully integrated standalone acceptance testing framework and wiki.''
+
+|!c '''Table of Contents'''|
+|!c ${projectName}Application|A Ready to run suite of tests for ${projectName}|
+|!c WebtestExamples|Selenium RC Integration examples|
