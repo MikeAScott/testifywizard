@@ -2,7 +2,7 @@
 
 ; HM NIS Edit Wizard helper defines
 !define PRODUCT_NAME "Testify"
-!define PRODUCT_VERSION "1.1.18"
+!define PRODUCT_VERSION "1.1.19"
 !define PRODUCT_PUBLISHER "SQS"
 !define PRODUCT_WEB_SITE "http://www.sqs-uk.com/"
 !define PRODUCT_DIR_REGKEY "Software\Microsoft\Windows\CurrentVersion\App Paths\TestifyGUI.exe"
@@ -27,6 +27,7 @@
 !insertmacro MUI_PAGE_INSTFILES
 ; Finish page
 !define MUI_FINISHPAGE_RUN "$INSTDIR\TestifyGUI.exe"
+!define MUI_FINISHPAGE_SHOWREADME "$INSTDIR\ReleaseNotes.txt"
 !insertmacro MUI_PAGE_FINISH
 
 ; Uninstaller pages
@@ -48,6 +49,7 @@ Section "MainSection" SEC01
   SetOutPath "$INSTDIR"
   SetOverwrite ifnewer
   File /r "build\dist\*"
+  File "ReleaseNotes.txt"
   CreateDirectory "$SMPROGRAMS\Testify"
   CreateShortCut "$SMPROGRAMS\Testify\Testify.lnk" "$INSTDIR\TestifyGUI.exe"
 SectionEnd
