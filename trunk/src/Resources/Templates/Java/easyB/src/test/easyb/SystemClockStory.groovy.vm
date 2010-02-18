@@ -4,10 +4,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import com.sqs.${projectName}.SystemClock
 
-description "As a: Tester I want to: take control of the system clock So that: I can test time dependent features of the application"
+description "As a: Tester; I want to: take control of the system clock; so that: I can test time dependent features of the application"
 
-DateFormat dfm = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
+dfm = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
 scenario "By default the system clock is in sync with internal Date class", {
 

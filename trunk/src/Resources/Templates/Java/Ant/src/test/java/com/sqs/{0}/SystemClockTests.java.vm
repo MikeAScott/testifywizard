@@ -15,7 +15,8 @@ public class SystemClockTests {
 	
 	@Test
 	public void SystemClockNowReturnsDataTimeNowByDefault() {
-		assertEquals(new Date(), SystemClock.getNow());
+		// Use toString() so that time is correct to nearest second, otherwise test fails cause miliseconds are different
+		assertEquals(new Date().toString(), SystemClock.getNow().toString());
 	}
 
 	@Test
