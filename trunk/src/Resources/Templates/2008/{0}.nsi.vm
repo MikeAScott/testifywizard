@@ -43,7 +43,7 @@
 ; MUI end ------
 
 Name "${PRODUCT_NAME} ${PRODUCT_VERSION}"
-OutFile "installer\${PRODUCT_NAME}.Setup.exe"
+OutFile "installer\${PRODUCT_NAME}-${PRODUCT_VERSION}.Setup.exe"
 InstallDir "$PROGRAMFILES\${PRODUCT_NAME}"
 InstallDirRegKey HKLM "${PRODUCT_DIR_REGKEY}" ""
 ShowInstDetails show
