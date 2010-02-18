@@ -1,0 +1,14 @@
+@echo off
+setlocal
+set reportDir=target\test-reports
+set cp=lib/commons-cli-1.2.jar;lib/groovy-1.6.4.jar;lib/easyb-0.9.6.jar;target/classes
+set runner=org.easyb.BehaviorRunner
+set sourceDir=src/test/easyb
+set report=%reportDir%/easyb/StoryReport.html
+
+if not exist %reportDir% mkdir %reportDir%
+if not exist %reportDir%\easyb mkdir %reportDir%\easyb
+ 
+java -cp %cp% %runner% %sourceDir%/* -html %report%
+
+start %report%
