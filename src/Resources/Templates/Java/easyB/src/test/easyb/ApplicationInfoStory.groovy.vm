@@ -1,0 +1,16 @@
+package com.sqs.${projectName}.stories
+import com.sqs.${projectName}.ApplicationInfo
+
+description "As a: System User, I need to: know the application name"
+
+scenario "get the application name", {
+
+	when "Checking the application name", {
+		appName = ApplicationInfo.getApplicationName()
+	}
+
+	then "the name should be ${projectName}", {
+		appName.shouldBeEqualTo "${projectName}"
+	}
+}
+
