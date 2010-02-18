@@ -190,7 +190,10 @@
 				<exclude name="**\*.pdb" />
 			</fileset>
 		</copy>
-		<echo message="!define FIXTURE_PATH {..\${project.name}.FitFixtures.dll}" file="${build.dir}\dist\AcceptanceTest\FitNesse\FitNesseRoot\FixturePath\content.txt" />
+		<property name="fixturepath.file" value="${build.dir}\dist\AcceptanceTest\FitNesse\FitNesseRoot\FixturePath\content.txt" />
+		<echo message="!define FIXTURE_PATH {..\${project.name}.FitFixtures.dll}" file="${fixturepath.file}" />
+		<echo message="!define SUT_PATH {..\${project.name}.FitFixtures.dll}" file="${fixturepath.file}" append="true" />
+		<echo message="!define FIXTURE_PACKAGE {${project.name}.FitFixtures}" file="${fixturepath.file}" append="true" />
 		<copy todir="${build.dir}\dist\DebugSymbols" flatten="true">
 			<fileset basedir="${build.dir}\${configuration}">
 				<include name="**\*.pdb"/>
