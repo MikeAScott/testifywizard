@@ -5,19 +5,29 @@
               directory with the processing instruction <?eclipse.ant.import?>
               as the first entry and export the buildfile again. -->
 <project basedir="." default="test" name="${projectName}">
+	<taskdef resource="net/sf/antcontrib/antlib.xml"/>
+
 	<property name="version" value="0.0.1-SNAPSHOT" />
-    <property environment="env"/>
+	<property name="fitnesse.master.host" value="localhost" />
+	<property name="fitnesse.master.port" value="8080" />
+
+	<property environment="env"/>
 	<property name="src.dir" value="src/main/java" />
 	<property name="test.dir" value="src/test/java" />
 	<property name="target.dir" value="target" />
 	<property name="report.dir" value="target/test-reports" />
-    <property name="junit.output.dir" value="${report.dir}/junit"/>
-    <property name="coverage.output.dir" value="${report.dir}/cobertura"/>
-    <property name="debuglevel" value="source,lines,vars"/>
-    <property name="target" value="1.6"/>
-    <property name="source" value="1.6"/>
-    <path id="JUnit 4.libraryclasspath">
-        <pathelement location="lib/junit-4.5.jar"/>
+	<property name="junit.output.dir" value="${report.dir}/junit"/>
+	<property name="coverage.output.dir" value="${report.dir}/cobertura"/>
+	<property name="fitnesse.dir" value="FitNesse" />
+	<property name="fitnesse.root" value="${fitnesse.dir}/FitNesseRoot" />
+	<property name="fitnesse.output.dir" value="${report.dir}/fitnesse"/>
+	<property name="fitnesse.port" value="8089"/>
+	<property name="debuglevel" value="source,lines,vars"/>
+	<property name="target" value="1.6"/>
+	<property name="source" value="1.6"/>
+
+	<path id="JUnit 4.libraryclasspath">
+		<pathelement location="lib/junit-4.5.jar"/>
     </path>
     <path id="project.classpath">
         <pathelement location="bin"/>
@@ -30,14 +40,14 @@
         <pathelement location="lib/easymockclassextension.jar"/>
     </path>
 	
-	<path id="Test.classpath">
+	<path id="test.classpath">
 		<path refid="project.classpath" />
-        <pathelement location="target/instrumented-classes/"/>
         <pathelement location="target/classes/"/>
         <pathelement location="target/test-classes/"/>
 	</path>
 	
 	<path id="cobertura.classpath">
+      <pathelement location="target/instrumented-classes/"/>
 		<fileset dir="lib\cobertura-1.9.3">
 			<include name="cobertura.jar" />
 			<include name="lib/**/*.jar" />
@@ -61,7 +71,9 @@
     <target depends="clean" name="cleanall"/>
 	<target name="build" depends="build-subprojects,build-project" />
 	<target name="test" depends="build, unit-test"  />
-	<target name="package" depends="build, unit-test, jar" />
+	<target name="accept" depends="build, unit-test, regression-test, acceptance-test" />
+	<target name="current-test" depends="build, unit-test, acceptance-test" />
+	<target name="package" depends="build, unit-test, regression-test, jar" />
 
     <target name="build-subprojects"/>
     
@@ -74,7 +86,7 @@
         <echo message="${ant.project.name}: ${ant.file} Tests"/>
         <javac debug="true" debuglevel="${debuglevel}" destdir="target/test-classes" source="${source}" target="${target}">
             <src path="${test.dir}"/>
-            <classpath refid="Test.classpath">
+            <classpath refid="test.classpath">
 			</classpath>
         </javac>
     </target>
@@ -106,7 +118,7 @@
         <mkdir dir="${junit.output.dir}"/>
         <junit fork="yes" printsummary="withOutAndErr">
             <formatter type="xml"/>
-            <classpath refid="Test.classpath"/>
+            <classpath refid="test.classpath"/>
             <classpath refid="cobertura.classpath"/>
 			<batchtest fork="yes" todir="${junit.output.dir}">
 				<fileset dir="target/test-classes">
@@ -124,11 +136,81 @@
 		<cobertura-report format="xml" srcdir="${src.dir}" destdir="${coverage.output.dir}"/>
 		<cobertura-report format="html" srcdir="${src.dir}" destdir="${coverage.output.dir}"/>
 	</target>
+
+	<target name="story-test" >
+		<antcall target="run-fitnesse" >
+			<param name="test.suite" value="StoryTests"/>
+			<param name="allow.fail" value="true"/>
+		</antcall>
+	</target>
 	
-    <target name="jar">
-        <jar jarfile="target/${projectName}-${version}.jar" basedir="target/classes"/>
-        <jar jarfile="target/${projectName}-${version}-tests.jar" basedir="target/test-classes"/>
+	<target name="regression-test" >
+		<antcall target="run-fitnesse" >
+			<param name="test.suite" value="CompletedStories"/>
+		</antcall>
+	</target>
+
+	<target name="acceptance-test" >
+		<antcall target="run-fitnesse" >
+			<param name="test.suite" value="CurrentStories"/>
+			<param name="allow.fail" value="true"/>
+		</antcall>
+	</target>
+	
+	<target name="load-fitnesse-taskdef">
+		<taskdef classpathref="project.classpath" resource="tasks.properties"/>
+	</target>
+
+	<target name="run-fitnesse" depends="load-fitnesse-taskdef"
+				description="Executes the Fitnesse Acceptance Test Suite. This target starts fitnesse, executes the 	Accetpance test suite, publishes the test results and stops fitnesse">
+		
+		<property name="project.root" value="${ant.project.name}Application" />
+		
+		<mkdir dir="${fitnesse.output.dir}"/>
+	   <condition property="suite.name" value="${test.suite}" else="StoryTests" >
+			<isset property="test.suite" />
+	   </condition>
+	   <property name="suite.page" value="${project.root}.${suite.name}" />
+	   
+	   <echo>--------------------------------------------------</echo>
+		<echo>Running ${suite.name} Suite</echo>
+		<echo>--------------------------------------------------</echo>
+ 
+		<run-fitnesse-tests wikidirectoryrootpath="${fitnesse.dir}" suitepage="${suite.page}"
+						fitnesseport="${fitnesse.port}" resultsdir="${fitnesse.output.dir}"
+                        resultsxmlpage="${suite.name}.results.xml" classpathref="test.classpath" 
+						failonerror="false" resultproperty="failures" />
+						
+		<if><isset property="failures" />
+			<then>
+				<echo>***************************************************************</echo>
+				<echo>Fitnesse: ${failures} failues/exceptions in ${suite.name} suite</echo>
+				<echo>***************************************************************</echo>
+			</then>
+		</if>
+
+		<property name="result.file" value="${fitnesse.output.dir}/${suite.name}.results.xml" />
+		<property name="report.file" value="${fitnesse.output.dir}/${suite.name}.report.html" />
+		
+		<echo message="formating report file: ${report.file}" />
+		<xslt style="${fitnesse.dir}/fitnesseReport.xsl" in="${result.file}" out="${report.file}" >
+				<param name="fit.host"  expression="${fitnesse.master.host}" />
+				<param name="fit.port"  expression="${fitnesse.master.port}" />
+				<param name="fit.root" expression="${project.root}" />
+				<param name="suite.name" expression="${suite.page}" />
+		</xslt>
+		
+ 		<fail message="Fitnesse: ${failures} failues/exceptions in ${suite.name} suite" >
+		   <condition><and>
+				<isset property="failures"/>
+				<not><isset property="allow.fail" /></not>
+		   </and></condition>
+		</fail>
+  </target>
+	
+   <target name="jar">
+        <jar jarfile="target/${ant.project.name}-${version}.jar" basedir="target/classes"/>
+        <jar jarfile="target/${ant.project.name}-${version}-tests.jar" basedir="target/test-classes"/>
     </target>
 	
 </project>
-
