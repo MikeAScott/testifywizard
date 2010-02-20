@@ -2,7 +2,7 @@
 
 ; HM NIS Edit Wizard helper defines
 !define PRODUCT_NAME "Testify"
-!define PRODUCT_VERSION "1.1.19"
+!define PRODUCT_VERSION "1.1.20"
 !define PRODUCT_PUBLISHER "SQS"
 !define PRODUCT_WEB_SITE "http://www.sqs-uk.com/"
 !define PRODUCT_DIR_REGKEY "Software\Microsoft\Windows\CurrentVersion\App Paths\TestifyGUI.exe"
