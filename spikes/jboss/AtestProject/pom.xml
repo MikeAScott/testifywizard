@@ -38,7 +38,9 @@
 		<environment.properties>environment/dev</environment.properties>
 		<environment.debug>true</environment.debug>
 		<environment.facelets.REFRESH_PERIOD>2</environment.facelets.REFRESH_PERIOD>
+	    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
+		
 	<repositories>
 		<repository>
 			<id>repository.jboss.org</id>
