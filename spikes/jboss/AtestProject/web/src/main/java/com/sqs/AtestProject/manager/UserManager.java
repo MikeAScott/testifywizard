@@ -36,11 +36,9 @@ import org.jboss.seam.annotations.Out;
 import org.jboss.seam.annotations.Scope;
 import org.jboss.seam.core.Events;
 
-import com.sqs.AtestProject.domain.Album;
 import com.sqs.AtestProject.domain.User;
 import com.sqs.AtestProject.service.Constants;
 import com.sqs.AtestProject.service.IUserAction;
-import com.sqs.AtestProject.util.HashUtils;
 
 @Name("userManager")
 @Scope(ScopeType.EVENT)
@@ -50,8 +48,6 @@ public class UserManager implements Serializable{
 	private static final long serialVersionUID = 6027103521084558931L;
 	
 	@In(scope=ScopeType.SESSION) @Out(scope=ScopeType.SESSION) User user;
-	
-	@In FileManager fileManager;
 	
 	@In(required=false, scope=ScopeType.CONVERSATION) @Out(required=false, scope=ScopeType.CONVERSATION) File avatarData;
 	
@@ -63,16 +59,7 @@ public class UserManager implements Serializable{
 	 */
 	@Observer(Constants.EDIT_USER_EVENT)
 	public void editUser(){
-		//If new avatar was uploaded
-		if (avatarData != null) {
-			if(!fileManager.saveAvatar(avatarData, user)){
-				Events.instance().raiseEvent(Constants.ADD_ERROR_EVENT, Constants.FILE_IO_ERROR);
-				return;
-			}
-			avatarData.delete();
-			avatarData = null;
-			user.setHasAvatar(true);
-		}try{
+		try{
 			//This check is actual only on livedemo server to prevent hacks.
 			//Prevent hackers to mark user as pre-defined
 			user.setPreDefined(false);
@@ -82,15 +69,6 @@ public class UserManager implements Serializable{
 			Events.instance().raiseEvent(Constants.ADD_ERROR_EVENT, Constants.UPDATE_USER_ERROR);
 			return;
 		}
-	}
-	
-	/**
-	 * This method observes <code>Constants.ALBUM_ADDED_EVENT</code> and invoked after the user add new album
-	 * @param album - added album
-	 */
-	@Observer(Constants.ALBUM_ADDED_EVENT)
-	public void onAlbumAdded(Album album){
-		user = userAction.refreshUser();
 	}
 	
 	/**

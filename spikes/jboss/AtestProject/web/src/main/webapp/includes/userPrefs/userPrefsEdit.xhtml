@@ -12,44 +12,6 @@
 	</h:panelGrid>
 	<h:panelGroup id="userPrefEdit">
 		
-			<table cellpadding="0" cellspacing="0" border="0">
-				<tr>
-					<td style="width:125px">
-						<h:outputLabel for="avatar">#{messages['user.avatar']}</h:outputLabel>
-					</td>
-					<td style="padding-left : 2px; padding-bottom : 2px">
-						<h:panelGroup layout="block" styleClass="preview_box_photo_nav" style="margin-right : 5px">
-							<h:graphicImage styleClass="pr_photo_bg" value="/img/shell/frame_photo_200.png" style="border:0"/>
-							<h:panelGrid cellpadding="0">
-								<h:panelGroup style="margin-bottom:7px;">
-									<ui:include src="/includes/userPrefs/avatar.xhtml" />
-								</h:panelGroup>
-							</h:panelGrid>
-						</h:panelGroup>
-					</td>
-					<td>
-
-					</td>
-				</tr>
-				<tr>
-					<td style="vertical-align : top;">
-
-					</td>
-					<td style="padding-bottom : 5px">
-					<div class="avatarUpload">
-							<rich:fileUpload addControlLabel="Change avatar" stopButtonClass="file-upload-stop-button" addButtonClass="file-upload-button" ajaxSingle="true" maxFilesQuantity="100"
-								fileUploadListener="#{userPrefsBean.uploadAvatar}" listHeight="0"
-								listWidth="0" immediateUpload="true" autoclear="true" acceptedTypes="jpg,jpeg">
-								<a4j:support ajaxSingle="true" event="onuploadcomplete" reRender="avatar"
-									/>
-							</rich:fileUpload>
-							</div>
-					</td>
-					<td style="vertical-align : top;">
-
-					</td>
-				</tr>
-				</table>
 				<rich:graphValidator>
 				<table cellpadding="0" cellspacing="0" border="0" class="reg-table">
 				<tr>

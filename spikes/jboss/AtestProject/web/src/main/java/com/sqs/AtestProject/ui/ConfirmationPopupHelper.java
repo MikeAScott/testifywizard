@@ -23,17 +23,8 @@ package com.sqs.AtestProject.ui;
 import java.io.Serializable;
 
 import org.jboss.seam.ScopeType;
-import org.jboss.seam.annotations.In;
 import org.jboss.seam.annotations.Name;
-import org.jboss.seam.annotations.Out;
 import org.jboss.seam.annotations.Scope;
-
-import com.sqs.AtestProject.domain.Album;
-import com.sqs.AtestProject.domain.Image;
-import com.sqs.AtestProject.domain.Shelf;
-import com.sqs.AtestProject.manager.AlbumManager;
-import com.sqs.AtestProject.manager.ImageManager;
-import com.sqs.AtestProject.manager.ShelfManager;
 
 @Name("confirmationPopupHelper")
 @Scope(ScopeType.CONVERSATION)
@@ -44,44 +35,6 @@ public class ConfirmationPopupHelper implements Serializable{
 	private String caption;
 	
 	private String actionName;
-	
-	@In @Out private Image image;
-	
-	@In @Out private Shelf shelf;
-	
-	@In @Out private Album album;
-	
-	@In AlbumManager albumManager;
-	
-	@In ShelfManager shelfManager;
-	
-	@In ImageManager imageManager;
-	
-	public void initImagePopup( String actionName, String caption, Image image){
-		this.caption = caption;
-		this.actionName = actionName;
-		this.image = image;
-	}
-	
-	public void initAlbumData( String actionName, String caption, Album album){
-		this.caption = caption;
-		this.actionName = actionName;
-		this.album = album;
-	}
-	
-	public void initShelfData( String actionName, String caption, Shelf shelf){
-		this.caption = caption;
-		this.actionName = actionName;
-		this.shelf = shelf;
-	}
-	
-	public void deleteAlbum(){
-		albumManager.deleteAlbum(this.album);
-	}
-	
-	public void deleteShelf(){
-		shelfManager.deleteShelf(this.shelf);
-	}
 	
 	public String getCaption() {
 		return caption;
@@ -99,7 +52,4 @@ public class ConfirmationPopupHelper implements Serializable{
 		this.actionName = actionName;
 	}
 	
-	public void deleteImage(){
-		imageManager.deleteImage(this.image);
-	}
 }

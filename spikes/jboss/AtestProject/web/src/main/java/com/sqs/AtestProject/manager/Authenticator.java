@@ -24,7 +24,6 @@ package com.sqs.AtestProject.manager;
  *
  * @author Andrey Markhel
  */
-import java.io.File;
 import java.io.Serializable;
 
 import javax.faces.context.FacesContext;
@@ -143,9 +142,6 @@ public class Authenticator implements Serializable {
 		//This check is actual only on livedemo server to prevent hacks.
 		//Only admins can mark user as pre-defined
 		user.setPreDefined(false);
-		if(!handleAvatar(user)){
-			return;
-		}
 		try {
 			userAction.register(user);
 		} catch (Exception e) {
@@ -189,19 +185,7 @@ public class Authenticator implements Serializable {
 		return "";
 	}
 	
-	private boolean handleAvatar(User user) {
-		File avatarData = (File) Contexts.getConversationContext().get(Constants.AVATAR_DATA_COMPONENT);
-		if (avatarData != null) {
-			user.setHasAvatar(true);
-			FileManager fileManager = (FileManager) Contexts.getApplicationContext().get(Constants.FILE_MANAGER_COMPONENT);
-			if (fileManager == null || !fileManager.saveAvatar(avatarData, user)) {
-				Events.instance().raiseEvent(Constants.ADD_ERROR_EVENT, Constants.AVATAR_SAVING_ERROR);
-				return false;
-			}
-		}
-		return true;
-	}
-	
+
 	private boolean checkUserExist(User user) {
 		if (userAction.isUserExist(user.getLogin())) {
 			Utils.addFacesMessage(Constants.REGISTER_LOGIN_NAME_ID, Constants.USER_WITH_THIS_LOGIN_ALREADY_EXIST);

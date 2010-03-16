@@ -58,11 +58,6 @@ public class Comment implements Serializable {
     @GeneratedValue
     private Long id;
 
-    @ManyToOne
-	@OnDelete(action = OnDeleteAction.CASCADE)
-	@JoinColumn(nullable = false)
-	private Image image;
-
     @ManyToOne(fetch = FetchType.LAZY)
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	@JoinColumn(nullable = true)
@@ -77,14 +72,6 @@ public class Comment implements Serializable {
 	@Column(length = 1024, nullable = false)
 	private String message;
 
-    /**
-     * Getter for property preDefined
-     *
-     * @return is this shelf is predefined
-     */
-    public boolean isPreDefined() {
-		return getImage().isPreDefined();
-	}
     //---------------------------------------Getters, Setters
     public Long getId() {
         return id;
@@ -114,14 +101,6 @@ public class Comment implements Serializable {
         this.message = message;
     }
 
-    public Image getImage() {
-        return image;
-    }
-
-    public void setImage(Image image) {
-        this.image = image;
-    }
-
     @Override
 	public boolean equals(Object obj) {
         if (this == obj) {
@@ -136,15 +115,13 @@ public class Comment implements Serializable {
 
         return (id == null ? comment.getId() == null : id.equals(comment.getId()))
 				&& (author == null ? comment.getAuthor() == null : author.equals(comment.getAuthor()))
-				&& image.equals(comment.getImage())
 				&& message.equals(comment.getMessage());
     }
 
     @Override
 	public int hashCode() {
         int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + image.hashCode();
-        result = 31 * result + author.hashCode();
+       result = 31 * result + author.hashCode();
         result = 31 * result + message.hashCode();
         return result;
     }

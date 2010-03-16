@@ -25,7 +25,6 @@ package com.sqs.AtestProject.util;
  * 
  * @author Andrey Markhel
  */
-import java.util.List;
 
 import javax.persistence.EntityManager;
 
@@ -39,11 +38,9 @@ import org.jboss.seam.annotations.Startup;
 import org.jboss.seam.annotations.Transactional;
 import org.jboss.seam.core.Events;
 
-import com.sqs.AtestProject.domain.Comment;
 import com.sqs.AtestProject.domain.User;
 import com.sqs.AtestProject.manager.LoggedUserTracker;
 import com.sqs.AtestProject.service.Constants;
-import com.sqs.AtestProject.service.IImageAction;
 
 @Scope(ScopeType.SESSION)
 @Name("sessionListener")
@@ -53,8 +50,6 @@ public class SessionListener {
 	@In(required=false)
 	private User user;
 
-	@In
-	private IImageAction imageAction;
 	@In(value="entityManager")
 	private EntityManager em;
 	@In LoggedUserTracker userTracker;
@@ -68,10 +63,6 @@ public class SessionListener {
 
 		if(user.getId() != null && !user.isPreDefined() && !userTracker.containsUserId(user.getId())){
 			user = em.merge(user);
-			final List<Comment> userComments = imageAction.findAllUserComments(user);
-			for (Comment c : userComments) {
-				em.remove(c);
-			}
 			em.remove(user);
 			em.flush();
 			

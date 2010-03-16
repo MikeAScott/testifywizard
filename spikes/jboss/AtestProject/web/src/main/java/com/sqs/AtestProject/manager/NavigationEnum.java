@@ -28,27 +28,13 @@ package com.sqs.AtestProject.manager;
  */
 
 public enum NavigationEnum {
-	ANONYM("includes/publicShelves.xhtml"),
-	FILE_UPLOAD("includes/fileUpload.xhtml"),
+	ANONYM("includes/public.xhtml"),
 	USER_PREFS("includes/userPrefs.xhtml"),
 	REGISTER("includes/register.xhtml"),
 	SEARCH("includes/search.xhtml"),
-	ALBUM_PREVIEW("includes/album.xhtml"),
-	ALBUM_IMAGE_PREVIEW("/includes/image.xhtml"),
-	SHELF_PREVIEW("/includes/shelf.xhtml"),
-	ALL_SHELFS("/includes/userShelves.xhtml"),
-	TAGS("includes/tag.xhtml"),
-	ALL_ALBUMS("/includes/userAlbums.xhtml"),
-	ALL_IMAGES("/includes/userImages.xhtml"),
-	ALBUM_IMAGE_EDIT("/includes/imageEdit.xhtml"),
-	ALBUM_EDIT("/includes/albumEdit.xhtml"),
-	SHELF_EDIT("/includes/shelfEdit.xhtml"),
-	SHELF_UNVISITED("/includes/shelfUnvisited.xhtml"),
-	USER_SHARED_ALBUMS("/includes/userSharedAlbums.xhtml"),
-	USER_SHARED_IMAGES("/includes/userSharedImages.xhtml"),
-	ALBUM_UNVISITED("/includes/albumUnvisited.xhtml");
+	HOME("includes/home.xhtml");
 	
-	private NavigationEnum(String t){
+	private	NavigationEnum(String t){
 		template=t;
 	}
 	

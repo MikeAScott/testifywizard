@@ -48,7 +48,7 @@ public class LoggedUserTracker {
 	public void addUserId(Long id, String sessionId){
 		loginnedUserIds.put(id, sessionId);
 	}
-	
+	 
 	/**
 	 * Remove user id from store after each logout
 	 * @param id - user id to remove
