@@ -87,16 +87,18 @@ img.errors {
 div.formField, div.buttonBox{
   clear: both;
   padding-top: 10px;
+  height: 1.2em;
   }
 
-div.formField label.fieldLabel, div.buttonBox label.buttonBoxLabel {
+div.formField label, div.buttonBox label {
   float: left;
   width: 100px;
   text-align: right;
   margin-right: 10px;
+  min-width: 100px;
   }
 
-div.formField span.fieldInput, div.buttonBox span.buttons{
+div.formField span.fieldValue, div.buttonBox span.buttons{
   float: left;
   text-align: left;
   }

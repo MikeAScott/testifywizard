@@ -14,27 +14,27 @@
 					</h:panelGroup>	
 				</f:facet>
 				
-				<s:decorate id="userUserNameDecoration" template="/layout/edit.xhtml">
+				<s:decorate id="userUserNameDecoration" template="/layout/edit.xhtml" styleClass="formField">
                 	<ui:define name="label">#{messages['user.username']}:</ui:define>
                 	<h:inputText required="true" id="username" value="#{user.username}" label="#{messages['user.username']}" style="width:300px;"/>
             	</s:decorate>
             	
-            	<s:decorate id="userEmailDecoration" template="/layout/edit.xhtml">
+            	<s:decorate id="userEmailDecoration" template="/layout/edit.xhtml" styleClass="formField">
                 	<ui:define name="label">#{messages['user.email']}:</ui:define>
                 	<h:inputText value="#{user.email}" required="true" id="email" label="#{messages['user.email']}" style="width:300px;"/> 
             	</s:decorate>
 
-            	<s:decorate id="userPasswordDecoration" template="/layout/edit.xhtml">
+            	<s:decorate id="userPasswordDecoration" template="/layout/edit.xhtml" styleClass="formField">
                 	<ui:define name="label">#{messages['user.password']}:</ui:define>
                 	<h:inputSecret value="#{user.password}" required="true" id="password" label="#{messages['user.password']}" style="width:300px;"/> 
             	</s:decorate>
             	
-            	<s:decorate id="userBirthdayDecoration" template="/layout/edit.xhtml">
+            	<s:decorate id="userBirthdayDecoration" template="/layout/edit.xhtml" styleClass="formField">
                 	<ui:define name="label">#{messages['user.birthday']}:</ui:define>
                 	<rich:calendar datePattern="#{messages['formatter.date.long']}" value="#{user.birthday}" label="#{messages['user.birthday']}" required="true" id="birthday" style="width:300px;"/>
             	</s:decorate>
             	
-            	<s:decorate id="userGenderDecoration" template="/layout/edit.xhtml">
+            	<s:decorate id="userGenderDecoration" template="/layout/edit.xhtml" styleClass="formField">
                 	<ui:define name="label">#{messages['user.gender']}:</ui:define>
                 	<h:selectOneMenu value="#{user.gender}" required="true" id="genderOption" label="#{messages['user.birthday']}" style="width:300px;">
                 		<s:selectItems var="gender" value="#{gender}" label="#{gender}" id="gender"/>
@@ -42,7 +42,8 @@
                 	</h:selectOneMenu>
             	</s:decorate>
             	
-				<s:decorate template="/layout/buttonbox.xhtml" id="userButtonBox">
+				<s:decorate id="userButtonBox" template="/layout/buttonbox.xhtml" styleClass="buttonBox">
+					<ui:define name="label">&#160;</ui:define>
 					<h:commandButton action="#{userService.saveOrUpdate(user)}" value="#{messages['general.save']}" id="save"/>
 					<h:commandButton action="#{userService.delete(user)}" value="#{messages['general.delete']}" id="delete"/>
 					<s:button action="#{userService.refresh(user)}" value="#{messages['general.back']}" view="/page/user/userList.xhtml" id="back"/>

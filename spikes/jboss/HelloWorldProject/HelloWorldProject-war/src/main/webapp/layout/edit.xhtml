@@ -5,17 +5,19 @@
 		xmlns:s="http://jboss.com/products/seam/taglib"
 		xmlns:rich="http://richfaces.org/rich">
         
-	<div class="formField">
-			<s:label styleClass="fieldLabel #{invalid?'error-label':''}">
+	<!-- <div class="formField">
+	 -->		<s:label styleClass="fieldLabel #{invalid?'error-label':''}">
 				<ui:insert name="label"/>
-				<s:span styleClass="required" rendered="#{required}">*</s:span>
 			</s:label>
 	    	
-			<span class="fieldInput #{invalid?'errors':''} #{readonly?'readonly':''}">
+			<span class="fieldValue #{invalid?'errors':''} #{readonly?'readonly':''}">
 				<s:validateAll>
 					<ui:insert/>
 				</s:validateAll>
+				<s:span styleClass="required" rendered="#{required}">*</s:span>
 				<s:message styleClass="error errors" style="clear:both;" />
 			</span>
+	<!-- 
 	</div>	
+ -->
 </ui:composition>

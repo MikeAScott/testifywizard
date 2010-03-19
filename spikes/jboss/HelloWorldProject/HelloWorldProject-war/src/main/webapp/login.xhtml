@@ -13,15 +13,20 @@
 		<h:form id="login">
 			<rich:panel id="login-panel">
     			<f:facet name="header">#{messages['general.login']}</f:facet>
-           	    <h:panelGrid columns="2" columnClasses="name,value">
-                   	<h:outputLabel for="username">#{messages['general.user']}:</h:outputLabel>
-                   	<h:inputText id="username" value="#{identity.username}"/>
-                   	<h:outputLabel for="password">#{messages['general.password']}:</h:outputLabel>
-                   	<h:inputSecret id="password" value="#{identity.password}"/>
-                   	
-                   	<s:fragment>&#160;</s:fragment>
+				<s:decorate id="userUserNameDecoration" template="/layout/edit.xhtml" styleClass="formField">
+                	<ui:define name="label">#{messages['general.user']}:</ui:define>
+                   	<h:inputText id="username" value="#{identity.username}" label="#{messages['general.user']}" />
+                </s:decorate>
+ 
+            	<s:decorate id="userPasswordDecoration" template="/layout/edit.xhtml" styleClass="formField">
+                	<ui:define name="label">#{messages['general.password']}:</ui:define>
+                   	<h:inputSecret id="password" value="#{identity.password}" label="#{messages['general.password']}"/>
+                </s:decorate>   	
+
+				<s:decorate id="userButtonBox" template="/layout/buttonbox.xhtml" styleClass="buttonBox">
+					<ui:define name="label">&#160;</ui:define>
                    	<h:commandButton value="#{messages['general.login']}" action="#{identity.login}" id="login-button"/>
-               	</h:panelGrid>
+                </s:decorate>
 	        </rich:panel>
 	    </h:form>
 	</ui:define> 
