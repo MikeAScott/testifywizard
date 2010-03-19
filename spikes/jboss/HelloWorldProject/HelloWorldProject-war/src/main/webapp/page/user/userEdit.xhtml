@@ -1,0 +1,54 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:s="http://jboss.com/products/seam/taglib"
+		xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://java.sun.com/jsf/core"
+		xmlns:h="http://java.sun.com/jsf/html" xmlns:rich="http://richfaces.org/rich"
+		xmlns:a="http://richfaces.org/a4j" template="/layout/template.xhtml">
+
+	<ui:define name="center">
+		<h:form id="userEditForm">
+			<rich:panel id="userEditPanel">
+				<f:facet name="header">
+					<h:panelGroup>
+						<h:outputText value="#{messages['user']}" />
+						<h:outputText value="&#160;" />
+						<h:outputText value="#{user.id == null ? messages['general.create'] : user.username}" />
+					</h:panelGroup>	
+				</f:facet>
+				
+				<s:decorate id="userUserNameDecoration" template="/layout/edit.xhtml">
+                	<ui:define name="label">#{messages['user.username']}:</ui:define>
+                	<h:inputText required="true" id="username" value="#{user.username}" label="#{messages['user.username']}" style="width:300px;"/>
+            	</s:decorate>
+            	
+            	<s:decorate id="userEmailDecoration" template="/layout/edit.xhtml">
+                	<ui:define name="label">#{messages['user.email']}:</ui:define>
+                	<h:inputText value="#{user.email}" required="true" id="email" label="#{messages['user.email']}" style="width:300px;"/> 
+            	</s:decorate>
+
+            	<s:decorate id="userPasswordDecoration" template="/layout/edit.xhtml">
+                	<ui:define name="label">#{messages['user.password']}:</ui:define>
+                	<h:inputSecret value="#{user.password}" required="true" id="password" label="#{messages['user.password']}" style="width:300px;"/> 
+            	</s:decorate>
+            	
+            	<s:decorate id="userBirthdayDecoration" template="/layout/edit.xhtml">
+                	<ui:define name="label">#{messages['user.birthday']}:</ui:define>
+                	<rich:calendar datePattern="#{messages['formatter.date.long']}" value="#{user.birthday}" label="#{messages['user.birthday']}" required="true" id="birthday" style="width:300px;"/>
+            	</s:decorate>
+            	
+            	<s:decorate id="userGenderDecoration" template="/layout/edit.xhtml">
+                	<ui:define name="label">#{messages['user.gender']}:</ui:define>
+                	
+                	<h:selectOneMenu value="#{user.gender}" required="true" id="genderOption" label="#{messages['user.birthday']}" style="width:300px;">
+                		<s:selectItems var="gender" value="#{gender}" label="#{gender}" id="gender"/>
+                		<s:convertEnum/>
+                	</h:selectOneMenu>
+            	</s:decorate>
+            	
+				<s:decorate template="/layout/buttonbox.xhtml" id="userButtonBox">
+					<h:commandButton action="#{userService.saveOrUpdate(user)}" value="#{messages['general.save']}" id="save"/>
+					<h:commandButton action="#{userService.delete(user)}" value="#{messages['general.delete']}" id="delete"/>
+					<s:button action="#{userService.refresh(user)}" value="#{messages['general.back']}" view="/page/user/userList.xhtml" id="back"/>
+				</s:decorate>
+			</rich:panel>
+		</h:form>	
+	</ui:define>	
+</ui:composition>		

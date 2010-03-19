@@ -24,7 +24,7 @@
       <property name="hibernate.cache.provider_class" value="org.hibernate.cache.HashtableCacheProvider" />
     </properties>
 
-    <class>com.sqs.projects.HelloWorldProject.model.Person</class>
+    <class>com.sqs.projects.HelloWorldProject.model.User</class>
   </persistence-unit>
 </persistence>
 

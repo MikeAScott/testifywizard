@@ -11,9 +11,9 @@
 			<redirect view-id="/home.xhtml"></redirect>
 		</navigation>
 		
-		<navigation from-action="personList">
+		<navigation from-action="userList">
 			<end-conversation before-redirect="true"/>
-			<redirect view-id="/page/person/personList.xhtml"></redirect>
+			<redirect view-id="/page/user/userList.xhtml"></redirect>
 		</navigation>	
 	</page>
 	

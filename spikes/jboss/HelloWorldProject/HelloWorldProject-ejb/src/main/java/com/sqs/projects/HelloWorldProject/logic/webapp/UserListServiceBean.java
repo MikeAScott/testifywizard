@@ -17,42 +17,42 @@ import org.jboss.seam.annotations.Scope;
 
 import com.sqs.projects.HelloWorldProject.logic.framework.AbstractEntityListServiceBean;
 import com.sqs.projects.HelloWorldProject.model.Gender;
-import com.sqs.projects.HelloWorldProject.model.Person;
+import com.sqs.projects.HelloWorldProject.model.User;
 
 @Stateful
-@Name(PersonListService.NAME)
+@Name(UserListService.NAME)
 @Scope(ScopeType.CONVERSATION)
-public class PersonListServiceBean extends AbstractEntityListServiceBean<Person>
-		implements PersonListService {
+public class UserListServiceBean extends AbstractEntityListServiceBean<User>
+		implements UserListService {
 
 	@In(required = false)
 	@Out(required = false)
-	private Person person;
+	private User user;
 
-	private List<Person> resultList;
+	private List<User> resultList;
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Person> getResultList() {
+	public List<User> getResultList() {
 		if (resultList == null) {
 			final Query query = entityManager
-					.createQuery(PersonListService.QUERY_RESULT);
+					.createQuery(UserListService.QUERY_RESULT);
 			resultList = query.getResultList();
 		}
 		return resultList;
 	}
 
 	@Override
-	@Observer( { "com.sqs.projects.HelloWorldProject.persited.Person",
-			"com.sqs.projects.HelloWorldProject.deleted.Person" })
+	@Observer( { "com.sqs.projects.HelloWorldProject.persited.User",
+			"com.sqs.projects.HelloWorldProject.deleted.User" })
 	public void refresh() {
 		resultList = null;
 		log.info("refresh resultList");
 	}
 
 	@Override
-	public void setSelectedEntity(Person person) {
-		this.person = person;
+	public void setSelectedEntity(User user) {
+		this.user = user;
 	}
 
 	@Factory
@@ -61,8 +61,8 @@ public class PersonListServiceBean extends AbstractEntityListServiceBean<Person>
 	}
 
 	@Override
-	public Person getSelectedEntity() {
-		return person;
+	public User getSelectedEntity() {
+		return user;
 	}
 
 	@Destroy

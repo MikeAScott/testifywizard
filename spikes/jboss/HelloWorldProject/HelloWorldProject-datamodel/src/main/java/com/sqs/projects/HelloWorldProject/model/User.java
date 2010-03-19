@@ -9,24 +9,30 @@ import javax.persistence.Enumerated;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.validator.Length;
 import org.hibernate.validator.NotNull;
 import org.jboss.seam.annotations.Name;
 
 import com.sqs.projects.HelloWorldProject.model.Gender;
 
 @Entity
-@Name("person")
-public class Person extends AbstractEntity {
+@Name("user")
+public class User extends AbstractEntity {
 
 	private static final long serialVersionUID = 1L;
 	
 	@NotNull
 	@Column(nullable = false)
-	private String firstname;
+	private String username;
 	
 	@NotNull
 	@Column(nullable = false)
-	private String lastname;
+	private String email;
+
+	@NotNull
+	@Column(nullable = false)
+	@Length(min=5, max=15)
+	private String password;
 	
 	@NotNull
 	@Column(nullable = false)
@@ -39,32 +45,41 @@ public class Person extends AbstractEntity {
 	private Gender gender;
 	
 	//required for jpa
-	public Person(){
+	public User(){
 		super();
 	}
 	
-	public Person(String firstname, String lastname, Date birthday, Gender gender) {
+	public User(String username, String email, String password, Date birthday, Gender gender) {
 		this();
-		this.firstname = firstname;
-		this.lastname = lastname;
+		this.username = username;
+		this.email = email;
+		this.password = password;
 		this.birthday = birthday;
 		this.gender = gender;
 	}
 	
-	public String getFirstname() {
-		return firstname;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setFirstname(String firstname) {
-		this.firstname = firstname;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 	
-	public String getLastname() {
-		return lastname;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setLastname(String lastname) {
-		this.lastname = lastname;
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 	
 	public Date getBirthday() {
@@ -86,8 +101,8 @@ public class Person extends AbstractEntity {
 	public String toString() {
 
 		StringBuilder values = new StringBuilder();
-		values.append("firstname = " + firstname);
-		values.append("lastname = " + lastname);
+		values.append("username = " + username);
+		values.append("email = " + email);
 
 		return values.toString();
 	}

@@ -5,17 +5,14 @@ import com.bm.datagen.annotations.GeneratorType;
 import com.bm.testsuite.BaseEntityFixture;
 
 import com.sqs.projects.HelloWorldProject.model.Gender;
-import com.sqs.projects.HelloWorldProject.model.Person;
-import com.bm.datagen.Generator;
-import com.bm.datagen.annotations.GeneratorType;
-import com.bm.testsuite.BaseEntityFixture;
+import com.sqs.projects.HelloWorldProject.model.User;
 
-public class PersonDBTest extends BaseEntityFixture<Person> {
+public class UserDBTest extends BaseEntityFixture<User> {
 
 	private static final Generator[] SPECIAL_GENERATORS = { new MyGenderCreator() };
 
-	public PersonDBTest() {
-		super(Person.class, SPECIAL_GENERATORS);
+	public UserDBTest() {
+		super(User.class, SPECIAL_GENERATORS);
 	}
 		
 	@GeneratorType(className = Gender.class)

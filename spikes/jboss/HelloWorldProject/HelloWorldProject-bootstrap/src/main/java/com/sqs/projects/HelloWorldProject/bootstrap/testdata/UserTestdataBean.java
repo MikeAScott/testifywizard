@@ -9,29 +9,29 @@ import org.jboss.seam.annotations.In;
 import org.jboss.seam.annotations.Name;
 
 import com.sqs.projects.HelloWorldProject.model.Gender;
-import com.sqs.projects.HelloWorldProject.model.Person;
+import com.sqs.projects.HelloWorldProject.model.User;
 
 @Stateless
-@Name(PersonTestdata.NAME)
-public class PersonTestdataBean implements PersonTestdata {
+@Name(UserTestdata.NAME)
+public class UserTestdataBean implements UserTestdata {
 
 	@In
 	private EntityManager entityManager;
 
 	public void insert() {
-		for (int i = 1; i <= ANZAHL; i++) {
-			entityManager.persist(createPerson(i));
+		for (int i = 1; i <= NUMBER; i++) {
+			entityManager.persist(createUser(i));
 		}
 	}
 
-	private Person createPerson(final int number) {
+	private User createUser(final int number) {
 		final Calendar calendar = Calendar.getInstance();
 		calendar.set(Calendar.YEAR, calendar.get(Calendar.YEAR ) - number);
 		final Gender[] gender = Gender.values();
-		final Person person = new Person("Max" + number, "Mustermann" + number,
+		final User user = new User("User" + number, "User" + number + "@nowhere.com","password",
 				calendar.getTime(), gender[number % 2]);
 
-		return person;
+		return user;
 	}
 
 }

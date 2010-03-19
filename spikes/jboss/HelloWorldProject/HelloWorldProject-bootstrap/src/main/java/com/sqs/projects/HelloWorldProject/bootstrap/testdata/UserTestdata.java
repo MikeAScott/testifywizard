@@ -3,9 +3,9 @@ package com.sqs.projects.HelloWorldProject.bootstrap.testdata;
 import javax.ejb.Local;
 
 @Local
-public interface PersonTestdata {
-	String NAME = "PersonTestdata";
-	int ANZAHL = 64;
+public interface UserTestdata {
+	String NAME = "UserTestdata";
+	int NUMBER = 20;
 
 	void insert();
 }

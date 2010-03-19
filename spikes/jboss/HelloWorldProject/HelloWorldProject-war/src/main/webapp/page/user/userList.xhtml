@@ -1,0 +1,54 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:s="http://jboss.com/products/seam/taglib"
+		xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://java.sun.com/jsf/core"
+		xmlns:h="http://java.sun.com/jsf/html" xmlns:rich="http://richfaces.org/rich"
+		xmlns:a="http://richfaces.org/a4j" template="/layout/template.xhtml">
+		
+	<ui:define name="center">
+		<a:form id="userListForm">
+			<rich:panel>
+				<f:facet name="header">
+					<h:panelGroup>
+						<h:outputFormat value="#{messages['user.list']}" />
+					</h:panelGroup>
+				</f:facet>
+	        
+				<rich:extendedDataTable value="#{userListService.resultList}" var="user" sortMode="single" rows="#{userListService.maxResults}" 
+						onRowMouseOver="this.className='extdt-row-selected'"
+		        		onRowMouseOut="this.className=''"
+		        		id="userListTable">
+					<f:facet name="header">
+						<h:panelGroup>
+							<h:commandLink action="#{userListService.setSelectedEntity(null)}" style="float:left;">
+								<h:outputText value="#{messages['user']}" />
+								<h:outputText value="&#160;" />
+								<h:outputText value="#{messages['general.create']}" />
+							</h:commandLink>
+							
+							<h:selectOneMenu value="#{userListService.maxResults}" id="maxResults" style="float:right;">
+								<s:selectItems var="option" value="#{userListService.maxResultsOption}" label="#{option}"/>
+								<a:support event="onchange" action="#{userListService.refresh}" reRender="userListTable"/> 
+							</h:selectOneMenu>
+						</h:panelGroup>
+					</f:facet>
+					
+					<rich:column sortable="true" sortBy="#{user.username}" filterBy="#{user.username}"  label="#{messages['user.username']}" width="50%">
+						<f:facet name="header">#{messages['user.username']}</f:facet>
+						<h:outputText value="#{user.username}" />
+					</rich:column>
+					
+					<rich:column sortable="true" sortBy="#{user.lastname}" filterBy="#{user.email}"  label="#{messages['user.email']}" width="50%">
+						<f:facet name="header">#{messages['user.email']}</f:facet>
+						<h:outputText value="#{user.email}" />
+					</rich:column>
+					
+					<a:support event="onRowClick" action="#{userListService.setSelectedEntity(user)}"/>
+					
+					<f:facet name="footer">
+						<rich:datascroller for="userListTable"  id="userListTableScroller" />
+					</f:facet>
+				</rich:extendedDataTable>
+			</rich:panel>
+		</a:form>
+	
+	</ui:define>
+</ui:composition>				
