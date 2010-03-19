@@ -52,6 +52,8 @@
 			<include name="cobertura.jar" />
 			<include name="lib/**/*.jar" />
 		</fileset>
+      <pathelement location="target/test-classes/"/>
+	  <path refid="project.classpath" />
 	</path>
 	<taskdef classpathref="cobertura.classpath" resource="tasks.properties" />	
 
@@ -118,7 +120,6 @@
         <mkdir dir="${junit.output.dir}"/>
         <junit fork="yes" printsummary="withOutAndErr">
             <formatter type="xml"/>
-            <classpath refid="test.classpath"/>
             <classpath refid="cobertura.classpath"/>
 			<batchtest fork="yes" todir="${junit.output.dir}">
 				<fileset dir="target/test-classes">
