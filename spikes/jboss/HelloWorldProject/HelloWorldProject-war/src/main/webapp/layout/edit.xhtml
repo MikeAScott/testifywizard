@@ -5,21 +5,17 @@
 		xmlns:s="http://jboss.com/products/seam/taglib"
 		xmlns:rich="http://richfaces.org/rich">
         
-	<h:panelGrid columns="2" columnClasses="name, value">
-		<h:column>
-			<s:label styleClass="#{invalid?'error-label':''}">
+	<div class="formField">
+			<s:label styleClass="fieldLabel #{invalid?'error-label':''}">
 				<ui:insert name="label"/>
 				<s:span styleClass="required" rendered="#{required}">*</s:span>
 			</s:label>
-		</h:column>
 	    	
-		<h:column>
-			<span class="#{invalid?'errors':''} #{readonly?'readonly':''}">
+			<span class="fieldInput #{invalid?'errors':''} #{readonly?'readonly':''}">
 				<s:validateAll>
 					<ui:insert/>
 				</s:validateAll>
 				<s:message styleClass="error errors" style="clear:both;" />
 			</span>
-		</h:column> 
-	</h:panelGrid>
+	</div>	
 </ui:composition>

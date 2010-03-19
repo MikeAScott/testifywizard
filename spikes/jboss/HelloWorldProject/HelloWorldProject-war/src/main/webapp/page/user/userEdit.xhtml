@@ -36,7 +36,6 @@
             	
             	<s:decorate id="userGenderDecoration" template="/layout/edit.xhtml">
                 	<ui:define name="label">#{messages['user.gender']}:</ui:define>
-                	
                 	<h:selectOneMenu value="#{user.gender}" required="true" id="genderOption" label="#{messages['user.birthday']}" style="width:300px;">
                 		<s:selectItems var="gender" value="#{gender}" label="#{gender}" id="gender"/>
                 		<s:convertEnum/>

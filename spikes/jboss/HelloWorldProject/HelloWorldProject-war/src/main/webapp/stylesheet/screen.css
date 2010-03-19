@@ -83,3 +83,26 @@ img.errors {
 .rich-table{
 	width:100%;
 }
+
+div.formField, div.buttonBox{
+  clear: both;
+  padding-top: 10px;
+  }
+
+div.formField label.fieldLabel, div.buttonBox label.buttonBoxLabel {
+  float: left;
+  width: 100px;
+  text-align: right;
+  margin-right: 10px;
+  }
+
+div.formField span.fieldInput, div.buttonBox span.buttons{
+  float: left;
+  text-align: left;
+  }
+  
+div.buttonBox span.messages {
+	float: right;
+}  
+
+  
