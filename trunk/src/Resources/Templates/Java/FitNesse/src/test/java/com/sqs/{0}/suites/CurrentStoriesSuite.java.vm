@@ -1,0 +1,13 @@
+package com.sqs.${projectName}.suites;
+
+import org.junit.runner.RunWith;
+import fitnesse.junit.FitNesseSuite;
+import fitnesse.junit.FitNesseSuite.FitnesseDir;
+import fitnesse.junit.FitNesseSuite.Name;
+import fitnesse.junit.FitNesseSuite.OutputDir;
+
+@RunWith(FitNesseSuite.class)
+@Name(Settings.APP_ROOT_PAGE + ".CurrentStories")
+@FitnesseDir(Settings.FITNESS_DIR)
+@OutputDir(Settings.OUTPUT_DIR)
+public class CurrentStoriesSuite {}
