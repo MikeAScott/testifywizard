@@ -1,0 +1,7 @@
+package com.sqs.${projectName}.suites;
+
+public class Settings {
+	public final static String FITNESS_DIR = "FitNesse";
+	public final static String OUTPUT_DIR = "target/test-reports/fitnesse";
+	public final static String APP_ROOT_PAGE = "${projectName}Application";
+}

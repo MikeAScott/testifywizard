@@ -1,0 +1,13 @@
+	src.dir									=				src/main/java
+	test.dir=src/test/java
+	target.dir=target
+	report.dir=target/test-reports
+	junit.output.dir=${report.dir}/junit
+	coverage.output.dir=${report.dir}/cobertura
+	fitnesse.output.dir=${report.dir}/fitnesse
+	fitnesse.dir=FitNesse
+	fitnesse.root=${fitnesse.dir}/FitNesseRoot
+		fitnesse.port=8089
+	debuglevel=source,lines,vars
+	target=1.6
+	source=1.6
