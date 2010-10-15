@@ -2,6 +2,27 @@
 Testify Release Notes
 =============================================================================
 
+Release 1.1.22 - ??
+==================================
+
+The following new features were introduced:
+
+	* None
+
+Includes the following template changes:
+
+	* Removed VS 2003 template
+	* Removed VS 2005 templates
+	
+The following minor changes were made:
+
+	* Upgraded solution to VS2010
+	
+The following bug fixes were made:
+
+	* none
+
+----------------------------------
 Release 1.1.21 - 14 October 2010
 ==================================
 

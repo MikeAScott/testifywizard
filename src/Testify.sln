@@ -1,5 +1,5 @@
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{AF8BC649-0F2E-4D34-A259-D406F0438C02}"
 	ProjectSection(SolutionItems) = preProject
 		..\CopyLibFiles.bat = ..\CopyLibFiles.bat
@@ -21,6 +21,27 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsUI", "WindowsUI\WindowsUI.csproj", "{C3F214DF-60A1-484F-AB09-1238248D9301}"
 EndProject
 Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 6
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://tfs02.codeplex.com/
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = TestifyConsole\\TestifyConsole.csproj
+		SccProjectName1 = TestifyConsole
+		SccLocalPath1 = TestifyConsole
+		SccProjectUniqueName2 = Core\\Core.csproj
+		SccProjectName2 = Core
+		SccLocalPath2 = Core
+		SccProjectUniqueName3 = UnitTests\\UnitTests.csproj
+		SccProjectName3 = UnitTests
+		SccLocalPath3 = UnitTests
+		SccProjectUniqueName4 = AcceptanceTests\\AcceptanceTests.csproj
+		SccProjectName4 = AcceptanceTests
+		SccLocalPath4 = AcceptanceTests
+		SccProjectUniqueName5 = WindowsUI\\WindowsUI.csproj
+		SccProjectName5 = WindowsUI
+		SccLocalPath5 = WindowsUI
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		AutomatedDebug|Any CPU = AutomatedDebug|Any CPU
 		Debug|Any CPU = Debug|Any CPU
@@ -63,26 +84,5 @@ Global
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		VisualSVNWorkingCopyRoot = ..
-	EndGlobalSection
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 6
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = https://tfs02.codeplex.com/
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = TestifyConsole\\TestifyConsole.csproj
-		SccProjectName1 = TestifyConsole
-		SccLocalPath1 = TestifyConsole
-		SccProjectUniqueName2 = Core\\Core.csproj
-		SccProjectName2 = Core
-		SccLocalPath2 = Core
-		SccProjectUniqueName3 = UnitTests\\UnitTests.csproj
-		SccProjectName3 = UnitTests
-		SccLocalPath3 = UnitTests
-		SccProjectUniqueName4 = AcceptanceTests\\AcceptanceTests.csproj
-		SccProjectName4 = AcceptanceTests
-		SccLocalPath4 = AcceptanceTests
-		SccProjectUniqueName5 = WindowsUI\\WindowsUI.csproj
-		SccProjectName5 = WindowsUI
-		SccLocalPath5 = WindowsUI
 	EndGlobalSection
 EndGlobal

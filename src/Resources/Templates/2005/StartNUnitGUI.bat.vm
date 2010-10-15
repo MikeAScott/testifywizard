@@ -1,2 +1,0 @@
-@echo off
-start tools\nunit\nunit.exe "${projectName}.UnitTests.nunit"

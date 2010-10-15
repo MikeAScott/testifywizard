@@ -9,6 +9,7 @@ namespace ThoughtWorks.TreeSurgeon.UnitTests {
 	public class TemplateSettingsTests {
 
 		TemplateSettings settings;
+        private const string TEST_TEMPLATE = "VS2008";
 
 		[SetUp]
 		public void SetUp() {
@@ -25,19 +26,19 @@ namespace ThoughtWorks.TreeSurgeon.UnitTests {
 			CollectionAssert.AllItemsAreInstancesOfType(settings.Templates, typeof(TemplateSettings.Template));
 		}
 		[Test]
-		public void FirstTemplateIsVs2005() {
-			Assert.AreEqual("2005", settings.Templates[0].Name);			
+		public void FirstTemplateIsTestTemplate() {
+			Assert.AreEqual(TEST_TEMPLATE, settings.Templates[0].Name);			
 		}
 
 
 		[Test]
 		public void CanGetTemplateConfigByName() {
-			Assert.IsNotNull(settings.Templates["2005"]);
+			Assert.IsNotNull(settings.Templates[TEST_TEMPLATE]);
 		}
 
 		[Test]
-		public void SettingsContainVS2005TemplateDirectory() {
-			Assert.AreEqual(@"resources\templates\2005", settings.Templates["2005"].TemplateDirectories[0].Path);
+		public void SettingsContainVS2008TemplateDirectory() {
+			Assert.AreEqual(@"resources\templates\2008", settings.Templates[TEST_TEMPLATE].TemplateDirectories[0].Path);
 		}
 
 		[Test]
