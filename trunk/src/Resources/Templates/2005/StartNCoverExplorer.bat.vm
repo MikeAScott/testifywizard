@@ -1,2 +1,0 @@
-@echo off
-start tools\NCoverExplorer\NCoverExplorer.exe "build\test-reports\\${projectName}.UnitTests.NCoverReport.xml"

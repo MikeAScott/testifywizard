@@ -8,6 +8,8 @@ namespace SQS.Testify.AcceptanceTests
 	[TestFixture]
 	public class ConsoleAcceptanceTest
 	{
+
+        private const string TEST_TEMPLATE = "VS2008";
 		private string projectName;
 		private string outputPath;
 		private DirectoryInfo wd;
@@ -46,12 +48,10 @@ namespace SQS.Testify.AcceptanceTests
 		[Test]
 		public void ShouldGenerateADevelopmentTreeWithCorrectNameThatBuildsSuccessfullyAndCanBeCleaned()
 		{
-			RunTreeSurgeonAndCheckOK("2005");
+			RunTreeSurgeonAndCheckOK(TEST_TEMPLATE);
 
 			string nantOutput = RunNantAndCheckPasses("");
-            Assert.IsTrue(nantOutput.IndexOf("[msbuild]     Target Core:") > -1);
-            Assert.IsTrue(nantOutput.IndexOf("[msbuild]     Target Core_UnitTests:") > -1);
-            Assert.IsTrue(nantOutput.IndexOf("[msbuild]     Target Console:") > -1);
+            Assert.IsTrue(nantOutput.IndexOf("[msbuild] Build succeeded") > -1);
 			Assert.IsTrue(nantOutput.IndexOf("Tests run: ") > -1 && nantOutput.IndexOf(", Failures: 0") > -1) ;
 			Assert.IsTrue(Directory.Exists(Path.Combine(outputPath, "build")));
 			CheckFileExistsAndIsBiggerThan(Path.Combine("test-reports", projectName + ".UnitTests.NUnitReport.xml"), 500);
@@ -64,7 +64,7 @@ namespace SQS.Testify.AcceptanceTests
 		[Test]
 		public void GeneratedTreeShouldGenerateDistributionFiles()
 		{
-			RunTreeSurgeonAndCheckOK("2005");
+			RunTreeSurgeonAndCheckOK(TEST_TEMPLATE);
 			RunNantAndCheckPasses("full");
 			CheckFileExistsAndIsBiggerThan(Path.Combine("dist",projectName + ".zip"), 1000);
 		}
@@ -73,7 +73,7 @@ namespace SQS.Testify.AcceptanceTests
 		[Test]
 		public void GeneratedTreeShouldRunNCoverForUnitTests()
 		{
-			RunTreeSurgeonAndCheckOK("2005");
+			RunTreeSurgeonAndCheckOK(TEST_TEMPLATE);
 			RunNantAndCheckPasses("full");
 			CheckFileExistsAndIsBiggerThan(Path.Combine("test-reports", projectName + ".UnitTests.CoverageReport.xml"), 500);
 		}
@@ -81,17 +81,9 @@ namespace SQS.Testify.AcceptanceTests
 		// TREE-4
 		[Test]
 		public void GeneratedTreeShouldRunFxCop() {
-			RunTreeSurgeonAndCheckOK("2005");
+			RunTreeSurgeonAndCheckOK(TEST_TEMPLATE);
 			RunNantAndCheckPasses("full");
 			CheckFileExistsAndIsBiggerThan(Path.Combine("test-reports", projectName + ".FxCopReport.xml"), 500);
-		}
-
-		[Test]
-		public void GeneratedTreeShouldRunFor2008Solution()
-		{
-			RunTreeSurgeonAndCheckOK("2008");
-			RunNantAndCheckPasses("full");
-			CheckFileExistsAndIsBiggerThan(Path.Combine("dist",projectName + ".zip"), 1000);
 		}
 
 
