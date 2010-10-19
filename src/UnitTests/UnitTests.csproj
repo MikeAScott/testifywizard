@@ -158,6 +158,7 @@
     <Compile Include="AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Core\ConfigurationMergerTests.cs" />
     <Compile Include="Core\TemplateSettingsTests.cs" />
     <Compile Include="Core\FileTemplateTests.cs" />
     <Compile Include="Core\Generators\Content\DefaultDirectoryCopierTest.cs">
@@ -191,6 +192,12 @@
   <ItemGroup>
     <None Include="..\Core\app.config">
       <Link>app.config</Link>
+    </None>
+    <None Include="original.test.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="sample.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup>

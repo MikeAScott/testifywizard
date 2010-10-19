@@ -130,6 +130,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\nVelocity\Commons.dll</HintPath>
     </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <HintPath>..\..\lib\SharpDevelop\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
     <Reference Include="log4net, Version=1.2.0.33710, Culture=neutral">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\log4Net\log4net.dll</HintPath>
@@ -158,6 +161,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Configuration\ConfigurationElementCollectionT.cs" />
+    <Compile Include="Configuration\ConfigurationMerger.cs" />
     <Compile Include="Configuration\TemplateSettings.cs" />
     <Compile Include="DirectoryListBuilder.cs" />
     <Compile Include="FileTemplate.cs" />
@@ -206,6 +210,7 @@
     <Compile Include="SimpleTreeGenerator.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="TemplateInstaller.cs" />
     <Compile Include="TreeSurgeonFrontEnd.cs">
       <SubType>Code</SubType>
     </Compile>
