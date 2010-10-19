@@ -134,6 +134,7 @@
     <Reference Include="System">
       <Name>System</Name>
     </Reference>
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data">
       <Name>System.Data</Name>
     </Reference>
@@ -158,6 +159,7 @@
     <Compile Include="AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="TemplateInstallerAcceptanceTest.cs" />
     <Compile Include="ConsoleAcceptanceTest.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -165,6 +167,9 @@
   <ItemGroup>
     <None Include="..\Core\app.config">
       <Link>app.config</Link>
+    </None>
+    <None Include="sample.zip">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -197,7 +202,7 @@ echo *************************************
 echo *************************************
 echo *************************************
 
-..\..\..\CopySkeletonFiles.bat "$(SolutionDir)" "$(TargetDir)"
-</PostBuildEvent>
+
+..\..\..\CopySkeletonFiles.bat "$(SolutionDir)" "$(TargetDir)"</PostBuildEvent>
   </PropertyGroup>
 </Project>
