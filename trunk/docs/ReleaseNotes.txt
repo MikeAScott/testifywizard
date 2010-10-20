@@ -7,7 +7,9 @@ Release 1.1.22 - ??
 
 The following new features were introduced:
 
-	* None
+	* Can import new templates from zip files (see templates/sample.zip
+	* Template selection dropdown displays template description rather than name
+		- fix for - Issue 2:	Enhance the descriptions for the Visual Studio Solution options in the wizard UI
 
 Includes the following template changes:
 

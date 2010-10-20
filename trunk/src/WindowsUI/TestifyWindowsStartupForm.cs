@@ -48,7 +48,8 @@ namespace WindowsUI
 			// TODO: Add any constructor code after InitializeComponent call
 			//
 			templateComboBox.DataSource = new TemplateListSource();
-			templateComboBox.DisplayMember = "Name";
+            templateComboBox.ValueMember = "Name";
+            templateComboBox.DisplayMember = "Description";
 			templateComboBox.SelectedIndex = 0;
 
 		}
@@ -284,7 +285,7 @@ namespace WindowsUI
 			messagesTextBox.Text = string.Format("\r\nStarting Tree Generation for {0}", projectNameTextBox.Text);
 			Application.DoEvents();
 
-			string version = templateComboBox.Text; 
+			string version = (String)templateComboBox.SelectedValue; 
 
 			try
 			{
