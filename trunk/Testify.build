@@ -122,7 +122,7 @@
 				<exclude name="**\PostBuildEvent.bat" />
 			</fileset>
 		</copy>
-		<copy file="ReleaseNotes.txt" tofile="${build.dir}\dist\ReleaseNotes.txt"/>
+		<copy file="docs\ReleaseNotes.txt" tofile="${build.dir}\dist\ReleaseNotes.txt"/>
 		<copy file="Testify-license.txt" tofile="${build.dir}\dist\Testify-license.txt"/>
 		<copy file="tools\nant\license.html" tofile="${build.dir}\dist\nant-license.html" />
 		<copy file="tools\nunit\license.html" tofile="${build.dir}\dist\nunit-license.html" />

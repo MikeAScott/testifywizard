@@ -49,7 +49,7 @@ Section "MainSection" SEC01
   SetOutPath "$INSTDIR"
   SetOverwrite ifnewer
   File /r "build\dist\*"
-  File "ReleaseNotes.txt"
+  File "docs\ReleaseNotes.txt"
   CreateDirectory "$SMPROGRAMS\Testify"
   CreateShortCut "$SMPROGRAMS\Testify\Testify.lnk" "$INSTDIR\TestifyGUI.exe"
 SectionEnd
