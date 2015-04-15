@@ -14,3 +14,5 @@ The core Testify generation engine and the original Visual Studio 2005 solution 
  * Added VS2008 Template with SpecFlow. This targets .NET 3.5 Runtime (It also includes Selenium2 runtime and dot net bindings although there is still no sample project yet.)
 
 Automatically exported from code.google.com/p/testifywizard
+
+http://mikeascott.github.io/testifywizard/
